@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+	<link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Endless Journey</title>
+</head>
+<body>
+    <div id="loadingScreen" class>
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+        <div class="stars4"></div>
+        <div class="stars5"></div>
+        <div class="stars6"></div>
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden"> Loading...</span>
+        </div>
+        <p class="text-light mt-3"> Loading...</p>
+    </div>
+    <audio id="music" loop>
+        <source src="./assets/bg_music.mp3" type="audio/mpeg">
+    </audio>
+    <div class="supported-resolution">
+        <div class="modal fade" id="welcomeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Welcome to Endless Journey, Commander Junie 🎉</h1>
+                        <h5 class="modal-subtitle fs-6">ยินดีต้อนรับสู่การเดินทางอันไร้พรมแดน ผู้บัญชาการจูเน่ 🎉</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p class="m-0">Get ready for an epic adventure through the universe!</p>
+                        <p class="m-0">เตรียมตัวให้พร้อมสำหรับการผจญภัยครั้งยิ่งใหญ่ผ่านจักรวาล!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary primary-button closeWelcomeModal" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="whole-container">
+            <div class="big-chapter-title">
+                <h1 class="m-0 chapter-title chapter-title-eng">Chapter #1 / <span class="chapter-title-th">บทที่ #1</span></h1>
+                <p class="m-0 chapter-subtitle chapter-subtitle-eng">The Beginning of an Epic Journey / <span class="chapter-subtitle-th">จุดเริ่มต้นของการเดินทางที่ยิ่งใหญ่</span></p>
+            </div>
+            <div class="conversation-character d-none">
+                <div class="unfocus-commander-junie-container"></div>
+                <div class="commander-junie-container">
+                    <div class="cbuble ntju">
+                        <p class="ntju-name m-0">Commander Junie</p>
+                    </div>
+                    <img src="./assets/girl.png" style="height: 300px;" alt="Commander Junie" class="character-image">
+                    <div class="cbubble cju">
+                        <p class="cju-eng m-0"></p>
+                        <p class="cju-th m-0"></p>
+                    </div>
+                </div>
+                <div class="conversation-controls">
+                    <button class="btn btn-primary buttonConversation" onclick="nextConversation()" disabled>Next >></button>
+                </div>
+                <div class="unfocus-commander-jovan-container"></div>
+                <div class="commander-jovan-container">
+                    <div class="cbuble ntjo">
+                        <p class="ntjo-name m-0">Commander Jovan</p>
+                    </div>
+                    <img src="./assets/boy.png" style="height: 300px;" alt="Commander Jovan" class="character-image">
+                    <div class="cbubble cjo">
+                        <p class="cjo-eng m-0"></p>
+                        <p class="cjo-th m-0"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="space-game-container d-none">
+                <h2>🌌 Planet Memory</h2>
+                <p class="game-description-eng m-0">
+                    In this game, you will be shown a sequence of planets that you will be visiting on your journey. 
+                    Your task is to memorize the order of the planets and then click on them in the correct order from left to right,
+                    then go from left to right on the next line (if there are more than 3 planets) after they get shuffled around. 
+                    The game consists of 3 rounds, with each round increasing in difficulty by adding more planets to memorize. 
+                    Can you become the ultimate galaxy master by completing all 3 rounds, Commander ? Let's find out! 🚀
+                </p>
+                <br>
+                <p class="game-description-th m-0">
+                    ในเกมนี้ คุณจะได้เห็นลำดับของดาวเคราะห์ต่าง ๆ ที่คุณจะได้ไปเยือนในการเดินทางครั้งนี้
+                    ภารกิจของคุณคือการจดจำลำดับของดาวเคราะห์เหล่านั้น แล้วคลิกเลือกให้ถูกต้องตามลำดับจากซ้ายไปขวา
+                    จากนั้นให้เลือกจากซ้ายไปขวาในบรรทัดถัดไป (หากมีดาวเคราะห์มากกว่า 3 ดวง) หลังจากที่พวกมันถูกสลับตำแหน่งกัน
+                    เกมนี้ประกอบด้วยทั้งหมด 3 รอบ ซึ่งแต่ละรอบจะมีความยากเพิ่มขึ้นโดยการเพิ่มจำนวนดาวเคราะห์ที่คุณต้องจดจำ
+                    คุณจะสามารถเป็นสุดยอดเจ้าแห่งกาแล็กซีได้หรือไม่ โดยการพิชิตทั้ง 3 รอบนี้ ผู้บัญชาการจูเน่ (Commander Junie)? มาเริ่มกันเลย! 🚀
+                </p>
+                <div id="gameMessage" class="game-message"></div>
+                <div class="planet-grid" id="planetGrid"></div>
+                <button class="start-btn" onclick="startGame()">Start Mission 🚀</button>
+            </div>
+        </div>
+        <footer class="text-center">
+            <p class="m-0">&copy; 2026 Endless Journey With Your Commander Jovan</p>
+        </footer>
+    </div>
+    <div class="unsupported-resolution">
+        <h1>Unsupported Resolution / ไม่รองรับความละเอียด</h1>
+        <p class="m-0 fs-6">Please use a device with a resolution of at least 1100px width. / โปรดใช้อุปกรณ์ที่มีความกว้างหน้าจออย่างน้อย 1100px</p>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script>
+
+    let wholeContainer = document.querySelector('.whole-container');
+    
+    let chapterTitleEng = document.querySelector('.chapter-title-eng');
+    let chapterSubtitleEng = document.querySelector('.chapter-subtitle-eng');
+    let chapterTitleTh = document.querySelector('.chapter-title-th');
+    let chapterSubtitleTh = document.querySelector('.chapter-subtitle-th');
+    let bigChapterTitle = document.querySelector('.big-chapter-title');
+
+    let buttonConversation = document.querySelector('.buttonConversation');
+    let conversationCharacter = document.querySelector('.conversation-character');
+    let commanderJunieSubtitleEng = document.querySelector('.cju-eng');
+    let commanderJunieSubtitleTh = document.querySelector('.cju-th');
+    let commanderJovanSubtitleEng = document.querySelector('.cjo-eng');
+    let commanderJovanSubtitleTh = document.querySelector('.cjo-th');
+    let unfocusCommanderJunieContainer = document.querySelector('.unfocus-commander-junie-container');
+    let unfocusCommanderJovanContainer = document.querySelector('.unfocus-commander-jovan-container');
+
+    window.onload = function () {
+        setTimeout(function () {
+            const loader = document.getElementById("loadingScreen");
+            const stars = document.querySelectorAll(".stars, .stars2, .stars3, .stars4, .stars5, .stars6");
+            stars.forEach(star => star.style.display = "none");
+            stars.forEach(star => star.classList.add("done"));
+            loader.style.display = "none";
+            loader.classList.add("done");
+            showWelcomeModal();
+        }, 1000);
+    };
+    
+    function showWelcomeModal() {
+        var welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+        welcomeModal.show();
+    }
+
+    document.querySelector('.closeWelcomeModal').addEventListener('click', function () {
+        // startMusic();
+        conversationCharacter.classList.add('d-none');
+        setTimeout(() => {
+            bigChapterTitle.classList.add('fade-in');
+        }, 1000);
+        setTimeout(() => {
+            bigChapterTitle.classList.remove('fade-in');
+            bigChapterTitle.classList.add('fade-out');
+            bigChapterTitle.addEventListener('animationend', () => {
+                bigChapterTitle.classList.add('d-none');
+                conversationCharacter.classList.remove('d-none');
+            });
+        }, 5000);
+        setTimeout(() => {
+            conversationCharacter.classList.add('show');
+        }, 7000);
+        setTimeout(() => {
+            wholeContainer.classList.add('focus');
+            unfocusCommanderJunieContainer.classList.add('show');
+            commanderJovanSubtitleEng.innerHTML = "Welcome to Endless Journey, Commander Junie! 🌌";
+            commanderJovanSubtitleTh.innerHTML = "ยินดีต้อนรับสู่ Endless Journey ผู้บัญชาการจูนี่! 🌌";
+        }, 9000);
+        setTimeout(() => {
+            buttonConversation.disabled = false;
+        }, 10000);
+    });
+
+    function startMusic(){
+        const music = document.getElementById("music");
+        music.volume = 0.05;
+        music.play();
+    }
+
+    // Conversation Logic Sequence
+    let conversationStep = 7; // Start from 0, increment every time nextConversation is called
+    function nextConversation(){
+        if(conversationStep === 0){
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            commanderJunieSubtitleEng.innerHTML = "Thank you, Commander Jovan! I'm excited to start this journey! 🚀";
+            commanderJunieSubtitleTh.innerHTML = "ขอบคุณค่ะ ผู้บัญชาการโจวัน! หนูตื่นเต้นมากที่จะได้เริ่มการเดินทางนี้! 🚀";
+        }else if(conversationStep === 1){
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            commanderJovanSubtitleEng.innerHTML = "Today is March 7th, 2026. The day we embark on our endless journey together, ...";
+            commanderJovanSubtitleTh.innerHTML = "วันนี้วันที่ 7 มีนาคม 2026 วันที่เราจะเริ่มออกเดินทางที่ไม่มีวันสิ้นสุดไปด้วยกันครับ, ...";
+        }else if(conversationStep === 2){
+            commanderJovanSubtitleEng.innerHTML = "I saw that there is a place for us to stay on one of the planets we will visit, ...";
+            commanderJovanSubtitleTh.innerHTML = "ผมเห็นว่ามีที่พักสำหรับเราบนดาวดวงหนึ่งที่เรากำลังจะไปเยือนครับ, ...";
+        }else if(conversationStep === 3){
+            commanderJovanSubtitleEng.innerHTML = "But before we get there, maybe we should memorize the routes and the planets we will be visiting! 🪐";
+            commanderJovanSubtitleTh.innerHTML = "แต่ก่อนที่เราจะไปถึงที่นั่น บางทีเราควรจะจำเส้นทางและดาวดวงต่าง ๆ ที่เราจะไปเยือนกันให้แม่นก่อนนะครับ! 🪐";
+        }else if(conversationStep === 4){
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            commanderJunieSubtitleEng.innerHTML = "That sounds like a great idea, Commander Jovan! But how are we going to do that? 🤔";
+            commanderJunieSubtitleTh.innerHTML = "นั่นเป็นไอเดียที่ดีมากเลยค่ะ ผู้บัญชาการโจวัน! แต่ว่าเราจะทำแบบนั้นกันยังไงดีคะ? 🤔";
+        }else if(conversationStep === 5){
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            commanderJovanSubtitleEng.innerHTML = "Don't worry, I'll be here to guide you through the galaxy! 🌌";
+            commanderJovanSubtitleTh.innerHTML = "ไม่ต้องห่วงนะครับ ผมจะอยู่ที่นี่เพื่อช่วยนำทางคุณผ่านจักรวาลนี้เอง! 🌌";
+        }else if(conversationStep === 6){
+            buttonConversation.disabled = true;
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            conversationCharacter.classList.remove('show');
+            conversationCharacter.classList.add('unshow');
+            wholeContainer.classList.remove('focus');
+            setTimeout(() => {
+                conversationCharacter.classList.add('d-none');
+                const spaceGameContainer = document.querySelector('.space-game-container');
+                spaceGameContainer.classList.remove('d-none');
+                spaceGameContainer.classList.add('fade-in');
+            }, 1000);
+        }else if(conversationStep === 7){
+            // Already win the game, next conversation
+            buttonConversation.disabled = false;
+            commanderJunieSubtitleEng.innerHTML = "";
+            commanderJunieSubtitleTh.innerHTML = "";
+            commanderJovanSubtitleEng.innerHTML = "";
+            commanderJovanSubtitleTh.innerHTML = "";
+            conversationCharacter.classList.remove('unshow');
+            conversationCharacter.classList.add('show');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            wholeContainer.classList.add('focus');
+            commanderJovanSubtitleEng.innerHTML = "Wow Commander Junie! You are a Galaxy Master! ...";
+            commanderJovanSubtitleTh.innerHTML = "ว้าว ผู้บัญชาการจูนี่! คุณคือเจ้าแห่งกาแล็กซีตัวจริงเลยนะครับเนี่ย! ...";
+        }else if(conversationStep === 8){
+            commanderJovanSubtitleEng.innerHTML = "I knew you could do it! I'm so proud of you, Commander Junie! 🌟";
+            commanderJovanSubtitleTh.innerHTML = "ผมรู้อยู่แล้วว่าคุณต้องทำได้! ผมภูมิใจในตัวคุณมากเลยครับ ผู้บัญชาการจูนี่! 🌟";
+        }else if(conversationStep === 9){
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            commanderJunieSubtitleEng.innerHTML = "Thank you so much, Commander Jovan! I couldn't have done it without your guidance! 🙏";
+            commanderJunieSubtitleTh.innerHTML = "ขอบคุณมากเลยค่ะ ผู้บัญชาการโจวัน! หนูคงทำไม่สำเร็จถ้าไม่มีคำแนะนำจากคุณ! 🙏";
+        }else if(conversationStep === 10){
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            commanderJovanSubtitleEng.innerHTML = "It was my pleasure, Commander Junie! ...";
+            commanderJovanSubtitleTh.innerHTML = "ด้วยความยินดีครับ ผู้บัญชาการจูนี่! ...";
+        }else if(conversationStep === 11){
+            commanderJovanSubtitleEng.innerHTML = "Now, let's continue our endless journey through the galaxy together! 🚀";
+            commanderJovanSubtitleTh.innerHTML = "เอาละครับ เรามาเริ่มออกเดินทางที่ไม่มีวันสิ้นสุดผ่านกาแล็กซีไปด้วยกันต่อเลย! 🚀";
+        }else if(conversationStep === 12){
+            chapterTitleEng.innerHTML = "Chapter #2 / <span class='chapter-title-th'>บทที่ #2</span>";
+            chapterSubtitleEng.innerHTML = "Is it 24? or 25?... / <span class='chapter-subtitle-th'>ยี่สิบสี่? หรือ ยี่สิบห้า?...</span>";
+            buttonConversation.disabled = true;
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            conversationCharacter.classList.remove('show');
+            conversationCharacter.classList.add('unshow');
+            wholeContainer.classList.remove('focus');
+            setTimeout(() => {
+                conversationCharacter.classList.add('d-none');
+                bigChapterTitle.classList.remove('d-none');
+                bigChapterTitle.classList.remove('fade-out');
+                bigChapterTitle.classList.add('fade-in');
+            }, 1000);
+            setTimeout(() => {
+                bigChapterTitle.classList.remove('fade-in');
+                bigChapterTitle.classList.add('fade-out');
+                bigChapterTitle.addEventListener('animationend', () => {
+                    bigChapterTitle.classList.add('d-none');
+                    conversationCharacter.classList.remove('d-none');
+                });
+            }, 5000);
+
+        }
+        conversationStep++;
+    }
+
+    // GAME #1
+    const planetPool=[
+        {img:"./assets/earth.png",name:"Earth"},
+        {img:"./assets/jupiter.png",name:"Jupiter"},
+        {img:"./assets/mars.png",name:"Mars"},
+        {img:"./assets/mercury.png",name:"Mercury"},
+        {img:"./assets/neptune.png",name:"Neptune"},
+        {img:"./assets/saturn.png",name:"Saturn"},
+        {img:"./assets/venus.png",name:"Venus"}
+    ]
+
+    let round = 1
+    let roundSizes = [3,5,7]
+
+    let correctOrder=[]
+    let shuffled=[]
+    let player=[]
+    let gameActive=false
+
+    const grid=document.getElementById("planetGrid")
+    const msg=document.getElementById("gameMessage")
+
+    function render(list,clickable=false){
+        grid.innerHTML=""
+        list.forEach((p,i)=>{
+            const div=document.createElement("div")
+            div.className="planet"
+            div.innerHTML=`<img src="${p.img}" style="width:60px;height:60px;">`
+            if(clickable){
+                div.onclick=()=>selectPlanet(i)
+            }
+            grid.appendChild(div)
+        })
+    }
+
+    function startGame(){
+        document.querySelector('.start-btn').style.display = 'none';
+        document.querySelector('.game-description-eng').style.display = 'none';
+        document.querySelector('.game-description-th').style.display = 'none';
+
+        const count = roundSizes[round-1]
+        const shuffledPool=[...planetPool].sort(()=>Math.random()-0.5)
+        correctOrder = shuffledPool.slice(0,count)
+        shuffled=[...correctOrder]
+        player=[]
+        gameActive=false
+        msg.innerText=`Round ${round}: Memorize the planets... / จดจำลำดับของดาวเคราะห์...`
+        render(correctOrder)
+        setTimeout(()=>{
+            msg.innerText="Shuffling planets... / กำลังสลับตำแหน่งดาวเคราะห์..."
+            grid.classList.add("shuffling")
+            setTimeout(()=>{
+                shuffleArray(shuffled)
+                grid.classList.remove("shuffling")
+                render(shuffled,true)
+                gameActive=true
+                msg.innerText=`Round ${round}: Click planets in the ORIGINAL order! / คลิกดาวเคราะห์ตามลำดับเดิม!`
+            },3000)
+        },5000)
+
+    }
+
+    function selectPlanet(index){
+        if(!gameActive) return
+        player.push(shuffled[index].name)
+        const clicked = grid.children[index]
+        clicked.style.opacity="0.4"
+        clicked.style.pointerEvents="none"
+        if(player.length===correctOrder.length){
+            gameActive=false
+            let correct=true
+            for(let i=0;i<correctOrder.length;i++){
+                if(player[i]!==correctOrder[i].name){
+                    correct=false
+                    break
+                }
+            }
+            if(correct){
+                if(round<3){
+                    msg.innerText="✅ Correct! Next round... / ถูกต้อง! ไปยังรอบถัดไป..."
+                    round++
+                    setTimeout(startGame,5000)
+                }else{
+                    msg.innerText="🚀 Wow Commander Junie! You are a Galaxy Master! / ว้าว ผู้บัญชาการจูเน่! คุณคือเจ้าแห่งกาแล็กซีตัวจริง!"
+                }
+            }else{
+                msg.innerText="❌ Wrong order! Try again Commander Junie. / ลำดับไม่ถูกต้อง! ลองใหม่อีกครั้งนะ ผู้บัญชาการจูเน่"
+                setTimeout(() => {
+                    document.querySelector('.start-btn').style.display = '';
+                    document.querySelector('.game-description-eng').style.display = 'flex';
+                    document.querySelector('.game-description-th').style.display = 'flex';
+                    grid.innerHTML = "";
+                    round = 1;
+                }, 3000);
+            }
+        }
+    }
+
+    function shuffleArray(array){
+        for(let i=array.length-1;i>0;i--){
+            const j=Math.floor(Math.random()*(i+1))
+            const temp=array[i]
+            array[i]=array[j]
+            array[j]=temp
+        }
+    }
+</script>
