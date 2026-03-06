@@ -128,7 +128,7 @@ body{
     .modal-footer {
         border-top: none;
         justify-content: center;}
-    .closeWelcomeModal {
+    .closeWelcomeModal, .closePrize1, .collectPrize1 {
         padding: 10px 20px;
         border: none;
         border-radius: 10px;
@@ -138,7 +138,7 @@ body{
         font-weight: bold;
         transition: background-color 0.3s ease;
         box-shadow: 5px 5px 8px #2abca1;}
-        .closeWelcomeModal:hover {
+        .closeWelcomeModal:hover, .closePrize1:hover, .collectPrize1:hover {
             background-color: #0f650c;}
 
     /* Big Chapter Title */
@@ -230,7 +230,7 @@ body{
     .unfocus-commander-junie-container{
         background: rgba(0, 0, 0, 0.4);
         width: 300px;
-        height: 498px;
+        height: 538px;
         position: absolute;
         z-index: 99;
         left: 35px;
@@ -253,7 +253,7 @@ body{
     .unfocus-commander-jovan-container{
         background: rgba(0, 0, 0, 0.4);
         width: 300px;
-        height: 498px;
+        height: 538px;
         position: absolute;
         z-index: 99;
         right: 35px;
@@ -274,7 +274,7 @@ body{
         text-align: center;
         align-content: center;
         width: 300px;
-        height: 160px;
+        height: 200px;
         padding: 15px;
         border-radius: 15px;
         background-color: rgba(255, 255, 255, 0.8);
@@ -323,7 +323,85 @@ body{
         color:white;
         cursor:pointer;
         font-weight:bold;}
+    
+    /* GAME 2 */
+    .space-dodge-container{
+        max-width:800px;
+        margin:auto;
+        padding:25px;
+        background:linear-gradient(180deg,#0b0b2b,#1b1b4a);
+        border-radius:20px;
+        text-align:center;
+        color:white;}
+    #spaceCanvas{
+        background:black;
+        border-radius:15px;
+        margin-top:15px;}
+    .nav-progress{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin:5px 0 15px 0;}
+    .progress-bar{
+        flex:1;
+        height:10px;
+        background:#333;
+        border-radius:10px;
+        overflow:hidden;}
+    #progressFill{
+        height:100%;
+        width:0%;
+        background:#4cafef;}
+    .start-btn-2{
+        padding:10px 20px;
+        border:none;
+        border-radius:10px;
+        background:#ff69b4;
+        color:white;
+        cursor:pointer;
+        font-weight:bold;}
+    
+    /* GAME 3 */
+    .earth-quiz-container{
+        max-width:800px;
+        margin:auto;
+        padding:25px;
+        background:linear-gradient(180deg,#0b0b2b,#1b1b4a);
+        border-radius:20px;
+        text-align:center;
+        color:white;
+        font-family:sans-serif;
+        }
 
+        .quiz-question{
+        font-size:20px;
+        margin:20px 0;
+        }
+
+        .quiz-options{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:15px;
+        margin-top:20px;
+        }
+
+        .quiz-option{
+        padding:15px;
+        border:none;
+        border-radius:12px;
+        background:#111;
+        color:white;
+        cursor:pointer;
+        transition:.3s;
+        font-size:16px;
+        }
+
+        .quiz-option:hover{
+        transform:scale(1.05);
+        background:#222;
+        }
+
+    /* Footer */
     footer {
         position: fixed;
         bottom: 0;
