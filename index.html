@@ -42,6 +42,48 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modalPrize1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Alien drop something onto the ground! 👽</h1>
+                        <h5 class="modal-subtitle fs-6">เอเลี่ยนทำบางอย่างหล่นลงพื้น! 👽</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p class="m-0">He dropped a mysterious artifact</p>
+                        <p class="m-0">เขาทำวัตถุโบราณที่น่าลึกลับบางอย่างหล่นไว้</p>
+                        <div class="prize-container d-flex flex-column align-items-center">
+                            <img class="mt-3" style="height: 360px;" src="./assets/grab.png" alt="">
+                        </div>
+                        <button class="btn btn-primary mt-3 btn collectPrize1" onclick="collectPrize1()">Collect Artifact</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary primary-button closePrize1" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalPrize2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">One of the Asteroid seems to be glowing! ☄️</h1>
+                        <h5 class="modal-subtitle fs-6">ดูเหมือนว่าจะมีอุกกาบาตลูกหนึ่งกำลังเรืองแสงอยู่! ☄️</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p class="m-0">Let's crack open that glowing asteroid</p>
+                        <p class="m-0">มากะเทาะเจ้าอุกกาบาตเรืองแสงนั่นให้แตกกันเถอะ</p>
+                        <div class="prize-container d-flex flex-column align-items-center">
+                            <img class="mt-3" style="height: 360px;" src="./assets/glowing_asteroid.png" alt="Glowing Asteroid">
+                        </div>
+                        <button class="btn btn-primary mt-3 btn collectPrize2" onclick="collectPrize2()">Collect Artifact</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary primary-button closePrize2" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="whole-container">
             <div class="big-chapter-title">
                 <h1 class="m-0 chapter-title chapter-title-eng">Chapter #1 / <span class="chapter-title-th">บทที่ #1</span></h1>
@@ -99,13 +141,13 @@
                 <h2>🚀 Asteroid Escape</h2>
                 <p class="game-description-eng-2 m-0">
                     Pilot your spacecraft through an asteroid field! Use the arrow keys to move
-                    left, right, up, and down. Survive for 1 minute and 30 seconds until you reach Earth.
+                    left, right, up, and down. Survive for 1 minute until you reach Earth.
                 </p>
                 <br class="game-2-space" >
                 <p class="game-description-th-2 m-0">
                     บังคับยานอวกาศของคุณหลบหลีกดาวเคราะห์น้อย!
                     ใช้ปุ่มลูกศรเพื่อเคลื่อนที่ ซ้าย ขวา ขึ้น ลง
-                    เอาชีวิตรอดให้ครบ 1 นาที 30 วินาที จนกว่าจะถึงโลก
+                    เอาชีวิตรอดให้ครบ 1 นาที จนกว่าจะถึงโลก
                 </p>
                 <div class="nav-progress d-none">
                     <span>🚀</span>
@@ -117,6 +159,23 @@
                 <div id="dodgeMessage" class="d-none"></div>
                 <canvas id="spaceCanvas" width="600" height="400" class="d-none"></canvas>
                 <button class="start-btn-2 mt-3" onclick="startDodgeGame()">Start Flight 🚀</button>
+            </div>
+            <div class="earth-quiz-container d-none">
+                <h2>🌍 Earth Integration Quiz</h2>
+                <p class="quiz-description-eng m-0">
+                    Welcome Commander! In this quiz you will answer questions about Earth.
+                    Each round contains one question with four choices. Choose the correct answer
+                    to continue your mission. Complete all 5 rounds to prove you understand Earth!
+                </p>
+                <br>
+                <p class="quiz-description-th m-0">
+                    ยินดีต้อนรับครับผู้บัญชาการ! ในควิซนี้คุณจะต้องตอบคำถามเกี่ยวกับโลก โดยในแต่ละรอบจะมีหนึ่งคำถามพร้อมตัวเลือกสี่ข้อ 
+                    เลือกคำตอบที่ถูกต้องเพื่อดำเนินภารกิจต่อไป ตอบคำถามให้ครบทั้ง 5 รอบเพื่อพิสูจน์ว่าคุณเข้าใจเรื่องราวของโลกอย่างแท้จริง!
+                </p>
+                <div id="quizMessage" class="game-message"></div>
+                <div class="quiz-question" id="quizQuestion"></div>
+                <div class="quiz-options" id="quizOptions"></div>
+                <button class="start-btn mt-3" onclick="startEarthQuiz()">Start Quiz 🌍</button>
             </div>
         </div>
         <footer class="text-center">
@@ -144,6 +203,8 @@
     let spaceGameContainer = document.querySelector('.space-game-container');
     // Game 2
     let aircraftGameContainer = document.querySelector('.space-dodge-container');
+    // Game 3
+    let quizGameContainer = document.querySelector('.earth-quiz-container');
 
     let buttonConversation = document.querySelector('.buttonConversation');
     let conversationCharacter = document.querySelector('.conversation-character');
@@ -170,6 +231,41 @@
         var welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
         welcomeModal.show();
     }
+
+    // PRIZE 1
+    function collectPrize1() {
+        // Make an action like copied to the clipboard;
+        navigator.clipboard.writeText("https://wogi.gifts/redeem/z2AS-jAHEA").then(function() {
+            alert("You have collected the Grab ! 🎫");
+        }, function(err) {
+            console.error('Uh oh! The Alien took the artifact back to his spaceship! 🛸', err);
+        });
+    }
+
+    // PRIZE 2
+    // function collectPrize2() {
+    //     // Make an action like copied to the clipboard;
+    //     navigator.clipboard.writeText("https://wogi.gifts/redeem/z2AS-jAHEA").then(function() {
+    //         alert("You have collected the Grab ! 🎫");
+    //     }, function(err) {
+    //         console.error('Uh oh! The Alien took the artifact back to his spaceship! 🛸', err);
+    //     });
+    // }
+
+    document.querySelector('.closePrize1').addEventListener('click', function () {
+        var modalPrize1 = new bootstrap.Modal(document.getElementById('modalPrize1'));
+        modalPrize1.hide();
+
+        spaceGameContainer.classList.remove('fade-in');
+        spaceGameContainer.classList.add('fade-out');
+        setTimeout(() => {
+            spaceGameContainer.classList.add('d-none');
+            conversationCharacter.classList.remove('d-none');
+            conversationCharacter.classList.remove('unshow');
+            conversationCharacter.classList.add('show');
+            nextConversation();
+        }, 1000);
+    });
 
     document.querySelector('.closeWelcomeModal').addEventListener('click', function () {
         startMusic();
@@ -214,7 +310,7 @@
     });
 
     // Conversation Logic Sequence
-    let conversationStep = 25; // Start from 0, increment every time nextConversation is called
+    let conversationStep = 0; // Start from 0, increment every time nextConversation is called
     function nextConversation(){
         if(conversationStep === 0){
             unfocusCommanderJunieContainer.classList.remove('show');
@@ -458,6 +554,7 @@
                 }, 1000);
             }, 6000);
             setTimeout(() => {
+                document.body.style.backgroundImage = "url('./assets/bg2.png')";
                 conversationCharacter.classList.remove('d-none');
                 conversationCharacter.classList.remove('unshow');
                 conversationCharacter.classList.add('show');
@@ -475,7 +572,69 @@
         }else if(conversationStep === 27){
             commanderJovanSubtitleEng.innerHTML = "The air is fresh, the sky is blue, and the grass is green... It's so beautiful here! 🌍";
             commanderJovanSubtitleTh.innerHTML = "อากาศสดชื่น ท้องฟ้าเป็นสีฟ้า และหญ้าเป็นสีเขียว... ที่นี่สวยงามมากเลยครับ/ค่ะ! 🌍"
-        };
+        }else if(conversationStep === 28){
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "I can't believe we made it, Commander Jovan! This is like a dream come true! 🌟";
+            commanderJunieSubtitleTh.innerHTML = "ไม่อยากจะเชื่อเลยว่าเราทำสำเร็จ ผู้บัญชาการโจวาน! นี่มันเหมือนฝันที่เป็นจริงเลย! 🌟"
+        } else if (conversationStep === 29) {
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            commanderJovanSubtitleEng.innerHTML = "But wait, Commander Junie! We can't just walk out there yet. The Earth Defense System requires a security clearance.";
+            commanderJovanSubtitleTh.innerHTML = "แต่เดี๋ยวก่อนครับ ผู้บัญชาการจูนี่! เรายังเดินออกไปเฉย ๆ ไม่ได้นะ ระบบป้องกันของโลกต้องการการยืนยันตัวตนก่อนครับ";
+        } else if (conversationStep === 30) {
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "A security clearance? After all that flying? What do we need to do? 🤔";
+            commanderJunieSubtitleTh.innerHTML = "ยืนยันตัวตนเหรอคะ? หลังจากที่บินมาตั้งไกลเนี่ยนะ? เราต้องทำยังไงบ้างคะ? 🤔";
+        } else if (conversationStep === 31) {
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            commanderJovanSubtitleEng.innerHTML = "We must complete the 'Earth Integration Quiz'. It’s a test of knowledge about our new home and your journey.";
+            commanderJovanSubtitleTh.innerHTML = "เราต้องทำ 'แบบทดสอบการรวมเข้ากับโลก' ครับ เป็นการทดสอบความรู้เกี่ยวกับบ้านใหม่และการเดินทางของคุณ";
+        } else if (conversationStep === 32) {
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "Challenge accepted! I've studied the ancient files. I'm ready for any questions! 💪";
+            commanderJunieSubtitleTh.innerHTML = "รับคำท้าค่ะ! หนูศึกษาไฟล์ข้อมูลโบราณมาแล้ว พร้อมสำหรับทุกคำถามเลยค่ะ! 💪";
+        } else if (conversationStep === 33) {
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            commanderJovanSubtitleEng.innerHTML = "Let's see if you're truly ready for age 25... I mean, for life on Earth! Answer correctly to unlock the gate.";
+            commanderJovanSubtitleTh.innerHTML = "มาดูกันว่าคุณพร้อมสำหรับอายุ 25... หมายถึง พร้อมสำหรับชีวิตบนโลกจริงไหม! ตอบให้ถูกเพื่อเปิดประตูเมืองนะครับ";
+        } else if (conversationStep === 34) {
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "Initiating the Quiz Protocol now! Let’s do this! 📝";
+            commanderJunieSubtitleTh.innerHTML = "เริ่มเข้าสู่โหมดทำแบบทดสอบเดี๋ยวนี้เลย! มาเริ่มกันเลยค่ะ! 📝";
+        } else if (conversationStep === 35) {
+            // TRIGGER THE QUIZ GAME
+            buttonConversation.disabled = true;
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            conversationCharacter.classList.remove('show');
+            conversationCharacter.classList.add('unshow');
+            wholeContainer.classList.remove('focus');
+            setTimeout(() => {
+                conversationCharacter.classList.add('d-none');
+                quizGameContainer.classList.remove('d-none');
+                quizGameContainer.classList.add('fade-in');
+            }, 1000);
+        }
 
         conversationStep++;
     }
@@ -492,7 +651,7 @@
     ]
 
     let round = 1
-    let roundSizes = [2,3,5]
+    let roundSizes = [1,1,1]
 
     let correctOrder=[]
     let shuffled=[]
@@ -565,20 +724,14 @@
                 }else{
                     msg.innerText="🚀 Wow Commander Junie! You are a Galaxy Master! / ว้าว ผู้บัญชาการจูเน่! คุณคือเจ้าแห่งกาแล็กซีตัวจริง!"
                     setTimeout(() => {
-                        spaceGameContainer.classList.remove('fade-in');
-                        spaceGameContainer.classList.add('fade-out');
-                        setTimeout(() => {
-                            spaceGameContainer.classList.add('d-none');
-                            conversationCharacter.classList.remove('d-none');
-                            conversationCharacter.classList.remove('unshow');
-                            conversationCharacter.classList.add('show');
-                            nextConversation();
-                        }, 1000);
-                    }, 3000);
+                        var prize1Modal = new bootstrap.Modal(document.getElementById('modalPrize1'));
+                        prize1Modal.show();
+                    }, 2000);
                 }
             }else{
                 msg.innerText="❌ Wrong order! Try again Commander Junie. / ลำดับไม่ถูกต้อง! ลองใหม่อีกครั้งนะ ผู้บัญชาการจูเน่"
                 setTimeout(() => {
+                    document.querySelector('.gameMessage').innerText = "";
                     document.querySelector('.start-btn').style.display = '';
                     document.querySelector('.game-description-eng').style.display = 'flex';
                     document.querySelector('.game-description-th').style.display = 'flex';
@@ -628,7 +781,7 @@
 
     let gameRunning=false
     let startTime=0
-    const gameDuration=90000 // 1.5 minutes
+    const gameDuration=60000 // 1 minute
 
     document.addEventListener("keydown",(e)=>{
         keys[e.key]=true
@@ -752,4 +905,92 @@
             }, 1000);
         }, 3000);
     }
+
+    // GAME #3
+    const earthQuizQuestions = [
+        {
+            question:"Which planet do humans live on?",
+            options:["Mars","Earth","Venus","Jupiter"],
+            answer:"Earth"
+        },
+        {
+            question:"What covers about 70% of Earth's surface?",
+            options:["Mountains","Water","Desert","Forest"],
+            answer:"Water"
+        },
+        {
+            question:"Which layer protects Earth from harmful solar radiation?",
+            options:["Ozone Layer","Core","Mantle","Crust"],
+            answer:"Ozone Layer"
+        }
+    ]
+
+    let quizRound = 0
+    let quizActive = false
+
+    const quizQuestion = document.getElementById("quizQuestion")
+    const quizOptions = document.getElementById("quizOptions")
+    const quizMsg = document.getElementById("quizMessage")
+
+    function startEarthQuiz(){
+        document.querySelector('.start-btn').style.display = 'none'
+        document.querySelector('.quiz-description-eng').style.display = 'none'
+        document.querySelector('.quiz-description-th').style.display = 'none'
+        quizRound = 0
+        loadQuizQuestion()
+    }
+
+    function loadQuizQuestion(){
+        quizActive = true
+        const q = earthQuizQuestions[quizRound]
+        quizMsg.innerText = `Round ${quizRound+1}`
+        quizQuestion.innerText = q.question
+        quizOptions.innerHTML=""
+        q.options.forEach(option=>{
+            const btn=document.createElement("button")
+            btn.className="quiz-option"
+            btn.innerText=option
+            btn.onclick=()=>selectQuizAnswer(option)
+            quizOptions.appendChild(btn)
+
+        })
+    }
+
+    function selectQuizAnswer(choice){
+        if(!quizActive) return
+        const q = earthQuizQuestions[quizRound]
+        quizActive=false
+        if(choice===q.answer){
+            quizMsg.innerText="✅ Correct!"
+            if(quizRound < earthQuizQuestions.length-1){
+                quizRound++
+                setTimeout(loadQuizQuestion,2000)
+            }else{
+                quizMsg.innerText="🌍 Excellent Commander Junie! Earth Integration Complete!"
+                setTimeout(()=>{
+                    earthQuizContainer.classList.remove('fade-in')
+                    earthQuizContainer.classList.add('fade-out')
+                    setTimeout(()=>{
+                        earthQuizContainer.classList.add('d-none')
+                        conversationCharacter.classList.remove('d-none')
+                        conversationCharacter.classList.remove('unshow')
+                        conversationCharacter.classList.add('show')
+                        nextConversation()
+                    },1000)
+                },3000)
+            }
+        }else{
+            quizMsg.innerText="❌ Incorrect answer. Try again Commander Junie."
+            setTimeout(()=>{
+                document.querySelector('.quizMessage').innerText=""
+                document.querySelector('.start-btn').style.display=''
+                document.querySelector('.quiz-description-eng').style.display='flex'
+                document.querySelector('.quiz-description-th').style.display='flex'
+                quizQuestion.innerHTML=""
+                quizOptions.innerHTML=""
+                quizRound=0
+            },3000)
+        }
+    }
+
 </script>
