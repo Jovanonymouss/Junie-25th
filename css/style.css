@@ -323,7 +323,45 @@ body{
         color:white;
         cursor:pointer;
         font-weight:bold;}
+    
+    /* GAME 2 */
+    .space-dodge-container{
+        max-width:800px;
+        margin:auto;
+        padding:25px;
+        background:linear-gradient(180deg,#0b0b2b,#1b1b4a);
+        border-radius:20px;
+        text-align:center;
+        color:white;}
+    #spaceCanvas{
+        background:black;
+        border-radius:15px;
+        margin-top:15px;}
+    .nav-progress{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin:5px 0 15px 0;}
+    .progress-bar{
+        flex:1;
+        height:10px;
+        background:#333;
+        border-radius:10px;
+        overflow:hidden;}
+    #progressFill{
+        height:100%;
+        width:0%;
+        background:#4cafef;}
+    .start-btn-2{
+        padding:10px 20px;
+        border:none;
+        border-radius:10px;
+        background:#ff69b4;
+        color:white;
+        cursor:pointer;
+        font-weight:bold;}
 
+    /* Footer */
     footer {
         position: fixed;
         bottom: 0;

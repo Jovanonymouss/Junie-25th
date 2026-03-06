@@ -95,6 +95,29 @@
                 <div class="planet-grid" id="planetGrid"></div>
                 <button class="start-btn" onclick="startGame()">Start Mission 🚀</button>
             </div>
+            <div class="space-dodge-container d-none">
+                <h2>🚀 Asteroid Escape</h2>
+                <p class="game-description-eng-2 m-0">
+                    Pilot your spacecraft through an asteroid field! Use the arrow keys to move
+                    left, right, up, and down. Survive for 1 minute and 30 seconds until you reach Earth.
+                </p>
+                <br class="game-2-space" >
+                <p class="game-description-th-2 m-0">
+                    บังคับยานอวกาศของคุณหลบหลีกดาวเคราะห์น้อย!
+                    ใช้ปุ่มลูกศรเพื่อเคลื่อนที่ ซ้าย ขวา ขึ้น ลง
+                    เอาชีวิตรอดให้ครบ 1 นาที 30 วินาที จนกว่าจะถึงโลก
+                </p>
+                <div class="nav-progress d-none">
+                    <span>🚀</span>
+                    <div class="progress-bar">
+                        <div id="progressFill"></div>
+                    </div>
+                    <span>🌍</span>
+                </div>
+                <div id="dodgeMessage" class="d-none"></div>
+                <canvas id="spaceCanvas" width="600" height="400" class="d-none"></canvas>
+                <button class="start-btn-2 mt-3" onclick="startDodgeGame()">Start Flight 🚀</button>
+            </div>
         </div>
         <footer class="text-center">
             <p class="m-0">&copy; 2026 Endless Journey With Your Commander Jovan</p>
@@ -116,6 +139,11 @@
     let chapterTitleTh = document.querySelector('.chapter-title-th');
     let chapterSubtitleTh = document.querySelector('.chapter-subtitle-th');
     let bigChapterTitle = document.querySelector('.big-chapter-title');
+
+    // Game 1
+    let spaceGameContainer = document.querySelector('.space-game-container');
+    // Game 2
+    let aircraftGameContainer = document.querySelector('.space-dodge-container');
 
     let buttonConversation = document.querySelector('.buttonConversation');
     let conversationCharacter = document.querySelector('.conversation-character');
@@ -144,7 +172,7 @@
     }
 
     document.querySelector('.closeWelcomeModal').addEventListener('click', function () {
-        // startMusic();
+        startMusic();
         conversationCharacter.classList.add('d-none');
         setTimeout(() => {
             bigChapterTitle.classList.add('fade-in');
@@ -152,10 +180,10 @@
         setTimeout(() => {
             bigChapterTitle.classList.remove('fade-in');
             bigChapterTitle.classList.add('fade-out');
-            bigChapterTitle.addEventListener('animationend', () => {
+            setTimeout(() => {
                 bigChapterTitle.classList.add('d-none');
                 conversationCharacter.classList.remove('d-none');
-            });
+            }, 1000);
         }, 5000);
         setTimeout(() => {
             conversationCharacter.classList.add('show');
@@ -177,13 +205,22 @@
         music.play();
     }
 
+    // Avoid Spamming the Next Button by disabling it for 1 second after each click
+    buttonConversation.addEventListener('click', function() {
+        buttonConversation.disabled = true;
+        setTimeout(() => {
+            buttonConversation.disabled = false;
+        }, 1000);
+    });
+
     // Conversation Logic Sequence
-    let conversationStep = 7; // Start from 0, increment every time nextConversation is called
+    let conversationStep = 25; // Start from 0, increment every time nextConversation is called
     function nextConversation(){
         if(conversationStep === 0){
             unfocusCommanderJunieContainer.classList.remove('show');
             unfocusCommanderJunieContainer.classList.add('unshow');
             unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
             commanderJunieSubtitleEng.innerHTML = "Thank you, Commander Jovan! I'm excited to start this journey! 🚀";
             commanderJunieSubtitleTh.innerHTML = "ขอบคุณค่ะ ผู้บัญชาการโจวัน! หนูตื่นเต้นมากที่จะได้เริ่มการเดินทางนี้! 🚀";
         }else if(conversationStep === 1){
@@ -222,24 +259,28 @@
             wholeContainer.classList.remove('focus');
             setTimeout(() => {
                 conversationCharacter.classList.add('d-none');
-                const spaceGameContainer = document.querySelector('.space-game-container');
+                // TRIGGER THE SPACE GAME
                 spaceGameContainer.classList.remove('d-none');
                 spaceGameContainer.classList.add('fade-in');
             }, 1000);
         }else if(conversationStep === 7){
-            // Already win the game, next conversation
-            buttonConversation.disabled = false;
+            // Already win the game 1, next conversation
             commanderJunieSubtitleEng.innerHTML = "";
             commanderJunieSubtitleTh.innerHTML = "";
             commanderJovanSubtitleEng.innerHTML = "";
             commanderJovanSubtitleTh.innerHTML = "";
             conversationCharacter.classList.remove('unshow');
             conversationCharacter.classList.add('show');
-            unfocusCommanderJunieContainer.classList.remove('unshow');
-            unfocusCommanderJunieContainer.classList.add('show');
-            wholeContainer.classList.add('focus');
-            commanderJovanSubtitleEng.innerHTML = "Wow Commander Junie! You are a Galaxy Master! ...";
-            commanderJovanSubtitleTh.innerHTML = "ว้าว ผู้บัญชาการจูนี่! คุณคือเจ้าแห่งกาแล็กซีตัวจริงเลยนะครับเนี่ย! ...";
+            setTimeout(() => {
+                unfocusCommanderJunieContainer.classList.remove('unshow');
+                unfocusCommanderJunieContainer.classList.add('show');
+                wholeContainer.classList.add('focus');
+                commanderJovanSubtitleEng.innerHTML = "Wow Commander Junie! You are a Galaxy Master! ...";
+                commanderJovanSubtitleTh.innerHTML = "ว้าว ผู้บัญชาการจูนี่! คุณคือเจ้าแห่งกาแล็กซีตัวจริงเลยนะครับเนี่ย! ...";
+            }, 2000);
+            setTimeout(() => {
+                buttonConversation.disabled = false;
+            }, 3000);
         }else if(conversationStep === 8){
             commanderJovanSubtitleEng.innerHTML = "I knew you could do it! I'm so proud of you, Commander Junie! 🌟";
             commanderJovanSubtitleTh.innerHTML = "ผมรู้อยู่แล้วว่าคุณต้องทำได้! ผมภูมิใจในตัวคุณมากเลยครับ ผู้บัญชาการจูนี่! 🌟";
@@ -271,20 +312,171 @@
             wholeContainer.classList.remove('focus');
             setTimeout(() => {
                 conversationCharacter.classList.add('d-none');
-                bigChapterTitle.classList.remove('d-none');
-                bigChapterTitle.classList.remove('fade-out');
-                bigChapterTitle.classList.add('fade-in');
-            }, 1000);
+                conversationCharacter.classList.remove('unshow');
+                setTimeout(() => {
+                    commanderJunieSubtitleEng.innerHTML = "";
+                    commanderJunieSubtitleTh.innerHTML = "";
+                    commanderJovanSubtitleEng.innerHTML = "";
+                    commanderJovanSubtitleTh.innerHTML = "";
+                    bigChapterTitle.classList.remove('d-none');
+                    bigChapterTitle.classList.remove('fade-out');
+                    bigChapterTitle.classList.add('fade-in');
+                }, 50);
+            }, 2000);
             setTimeout(() => {
                 bigChapterTitle.classList.remove('fade-in');
                 bigChapterTitle.classList.add('fade-out');
-                bigChapterTitle.addEventListener('animationend', () => {
+                setTimeout(() => {
                     bigChapterTitle.classList.add('d-none');
                     conversationCharacter.classList.remove('d-none');
-                });
-            }, 5000);
+                }, 1000);
+            }, 6000);
+            setTimeout(() => {
+                conversationCharacter.classList.remove('d-none');
+                conversationCharacter.classList.remove('unshow');
+                conversationCharacter.classList.add('show');
+            }, 8000);
+            setTimeout(() => {
+                unfocusCommanderJunieContainer.classList.remove('unshow');
+                unfocusCommanderJunieContainer.classList.add('show');
+                wholeContainer.classList.add('focus');
+                commanderJovanSubtitleEng.innerHTML = "Commander Junie, look! ...";
+                commanderJovanSubtitleTh.innerHTML = "ผู้บัญชาการจูนี่ ดูนั่นสิ! ...";
+            }, 10000);
+            setTimeout(() => {
+                buttonConversation.disabled = false;
+            }, 11000);
+        }else if(conversationStep === 13){
+            commanderJovanSubtitleEng.innerHTML = "I've received an encrypted signal from an old-world relay. Earth is still green!";
+            commanderJovanSubtitleTh.innerHTML = "ผมได้รับสัญญาณรหัสจากสถานีส่งสัญญาณเก่าแก่ โลกยังเป็นสีเขียวอยู่เลยครับ!";
+        }else if(conversationStep === 14){
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "Earth? The legendary blue planet? ...";
+            commanderJunieSubtitleTh.innerHTML = "โลกเหรอคะ? ดาวเคราะห์สีน้ำเงินในตำนานน่ะเหรอ? ...";
+        }else if(conversationStep === 15) {
+            commanderJunieSubtitleEng.innerHTML = "I thought it was just a myth from the old star-charts! 🌍";
+            commanderJunieSubtitleTh.innerHTML = "หนูคิดว่าเป็นแค่เรื่องเล่าจากแผนที่ดาวโบราณซะอีก! 🌍";
+        }else if(conversationStep === 16) {
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            commanderJovanSubtitleEng.innerHTML = "It's real. My sources confirm it's the safest place to stay. ...";
+            commanderJovanSubtitleTh.innerHTML = "มันคือเรื่องจริงครับ แหล่งข่าวที่เชื่อถือได้ยืนยันว่าที่นั่นปลอดภัยที่สุด. ...";
+        }else if(conversationStep === 17) {
+            commanderJovanSubtitleEng.innerHTML = "But wait... the age on the signal is...";
+            commanderJovanSubtitleTh.innerHTML = "แต่เดี๋ยวก่อน... อายุของสัญญาณนี้มัน...";
+        }else if(conversationStep === 18) {
+            commanderJovanSubtitleEng.innerHTML = "Is it the 24 years old? Or is it 25 years old?";
+            commanderJovanSubtitleTh.innerHTML = "24 ปี? หรือว่าจะเป็น 25 ปีกันแน่?";
+        }else if(conversationStep === 19) {
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "Whatever how old it is, we have a bigger problem! ...";
+            commanderJunieSubtitleTh.innerHTML = "ไม่ว่ามันจะอายุเท่าไหร่ก็ช่าง แต่เรามีปัญหาที่ใหญ่กว่านั้น! ...";
+        }else if(conversationStep === 20) {
+            commanderJunieSubtitleEng.innerHTML = "Look at the radar—asteroid debris ahead!";
+            commanderJunieSubtitleTh.innerHTML = "ดูเรดาร์สิ—มีเศษซากอุกกาบาตอยู่ข้างหน้าเต็มไปหมดเลย!";
+        }else if(conversationStep === 21) {
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            commanderJovanSubtitleEng.innerHTML = "The path to Earth is never easy. ...";
+            commanderJovanSubtitleTh.innerHTML = "เส้นทางสู่โลกไม่เคยง่ายเลย ...";
+        }else if(conversationStep === 22) {
+            commanderJovanSubtitleEng.innerHTML = "Commander Junie, take the co-pilot seat. We need to dodge those obstacles! 🌟";
+            commanderJovanSubtitleTh.innerHTML = "ผู้บัญชาการจูนี่ มานั่งที่ที่นั่งผู้ช่วยนักบินเร็ว เราต้องหลบสิ่งกีดขวางพวกนั้นให้ได้! 🌟";
+        }else if(conversationStep === 23) {
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "Ready and buckled up! Let's show this galaxy how we fly. Destination: Earth! 🌍";
+            commanderJunieSubtitleTh.innerHTML = "พร้อมแล้วและรัดเข็มขัดเรียบร้อย! มาแสดงให้กาแล็กซีนี้เห็นกันว่าเราบินเก่งแค่ไหน จุดหมายคือ... โลก! 🌍";
+        }else if(conversationStep === 24) {
+            // TRIGGER THE AIRCRAFT GAME
+            buttonConversation.disabled = true;
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            conversationCharacter.classList.remove('show');
+            conversationCharacter.classList.add('unshow');
+            wholeContainer.classList.remove('focus');
+            setTimeout(() => {
+                conversationCharacter.classList.add('d-none');
+                aircraftGameContainer.classList.remove('d-none');
+                aircraftGameContainer.classList.add('fade-in');
+            }, 1000);
+        }else if(conversationStep === 25){
+            // Already win the game 2, next conversation
+            commanderJunieSubtitleEng.innerHTML = "";
+            commanderJunieSubtitleTh.innerHTML = "";
+            commanderJovanSubtitleEng.innerHTML = "";
+            commanderJovanSubtitleTh.innerHTML = "";
+            conversationCharacter.classList.remove('unshow');
+            conversationCharacter.classList.add('show');
+            setTimeout(() => {
+                unfocusCommanderJunieContainer.classList.remove('unshow');
+                unfocusCommanderJunieContainer.classList.add('show');
+                wholeContainer.classList.add('focus');
+                commanderJovanSubtitleEng.innerHTML = "Wow Commander Junie! That was amazing! Earth... here we come! 🌍";
+                commanderJovanSubtitleTh.innerHTML = "ว้าว ผู้บัญชาการจูนี่! เมื่อกี้มันสุดยอดไปเลย! โลกจ๋า... พวกเรามาแล้ว! 🌍";
+            }, 2000);
+        }else if(conversationStep === 26){
+            chapterTitleEng.innerHTML = "Chapter #3 / <span class='chapter-title-th'>บทที่ #3</span>";
+            chapterSubtitleEng.innerHTML = "The New Life / <span class='chapter-subtitle-th'>ชีวิตใหม่</span>";
+            buttonConversation.disabled = true;
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            conversationCharacter.classList.remove('show');
+            conversationCharacter.classList.add('unshow');
+            wholeContainer.classList.remove('focus');
+            setTimeout(() => {
+                conversationCharacter.classList.add('d-none');
+                conversationCharacter.classList.remove('unshow');
+                setTimeout(() => {
+                    commanderJunieSubtitleEng.innerHTML = "";
+                    commanderJunieSubtitleTh.innerHTML = "";
+                    commanderJovanSubtitleEng.innerHTML = "";
+                    commanderJovanSubtitleTh.innerHTML = "";
+                    bigChapterTitle.classList.remove('d-none');
+                    bigChapterTitle.classList.remove('fade-out');
+                    bigChapterTitle.classList.add('fade-in');
+                }, 50);
+            }, 2000);
+            setTimeout(() => {
+                bigChapterTitle.classList.remove('fade-in');
+                bigChapterTitle.classList.add('fade-out');
+                setTimeout(() => {
+                    bigChapterTitle.classList.add('d-none');
+                    conversationCharacter.classList.remove('d-none');
+                }, 1000);
+            }, 6000);
+            setTimeout(() => {
+                conversationCharacter.classList.remove('d-none');
+                conversationCharacter.classList.remove('unshow');
+                conversationCharacter.classList.add('show');
+            }, 8000);
+            setTimeout(() => {
+                unfocusCommanderJunieContainer.classList.remove('unshow');
+                unfocusCommanderJunieContainer.classList.add('show');
+                wholeContainer.classList.add('focus');
+                commanderJovanSubtitleEng.innerHTML = "Finally!! We reached Earth safely Commander Junie! ...";
+                commanderJovanSubtitleTh.innerHTML = "ในที่สุด!! เราก็ถึงโลกอย่างปลอดภัยแล้วครับ/ค่ะ ผู้บัญชาการจูนี่! ...";
+            }, 10000);
+            setTimeout(() => {
+                buttonConversation.disabled = false;
+            }, 11000);
+        }else if(conversationStep === 27){
+            commanderJovanSubtitleEng.innerHTML = "The air is fresh, the sky is blue, and the grass is green... It's so beautiful here! 🌍";
+            commanderJovanSubtitleTh.innerHTML = "อากาศสดชื่น ท้องฟ้าเป็นสีฟ้า และหญ้าเป็นสีเขียว... ที่นี่สวยงามมากเลยครับ/ค่ะ! 🌍"
+        };
 
-        }
         conversationStep++;
     }
 
@@ -300,7 +492,7 @@
     ]
 
     let round = 1
-    let roundSizes = [3,5,7]
+    let roundSizes = [2,3,5]
 
     let correctOrder=[]
     let shuffled=[]
@@ -369,9 +561,20 @@
                 if(round<3){
                     msg.innerText="✅ Correct! Next round... / ถูกต้อง! ไปยังรอบถัดไป..."
                     round++
-                    setTimeout(startGame,5000)
+                    setTimeout(startGame,3000)
                 }else{
                     msg.innerText="🚀 Wow Commander Junie! You are a Galaxy Master! / ว้าว ผู้บัญชาการจูเน่! คุณคือเจ้าแห่งกาแล็กซีตัวจริง!"
+                    setTimeout(() => {
+                        spaceGameContainer.classList.remove('fade-in');
+                        spaceGameContainer.classList.add('fade-out');
+                        setTimeout(() => {
+                            spaceGameContainer.classList.add('d-none');
+                            conversationCharacter.classList.remove('d-none');
+                            conversationCharacter.classList.remove('unshow');
+                            conversationCharacter.classList.add('show');
+                            nextConversation();
+                        }, 1000);
+                    }, 3000);
                 }
             }else{
                 msg.innerText="❌ Wrong order! Try again Commander Junie. / ลำดับไม่ถูกต้อง! ลองใหม่อีกครั้งนะ ผู้บัญชาการจูเน่"
@@ -393,5 +596,160 @@
             array[i]=array[j]
             array[j]=temp
         }
+    }
+
+    // GAME #2
+    const shipImg = new Image()
+    shipImg.src = "./assets/aircraft.png"
+    const asteroidImg = new Image()
+    asteroidImg.src = "./assets/asteroids.png"
+
+    const canvas = document.getElementById("spaceCanvas")
+    const ctx = canvas.getContext("2d")
+
+    const dodgeMsg = document.getElementById("dodgeMessage")
+    const progressFill = document.getElementById("progressFill")
+
+    let ship = {
+        x:280,
+        y:330,
+        w:50,
+        h:75,
+        speed:5
+    }
+    let hitbox = {
+        xOffset: 15,
+        yOffset: 15,
+        w: 30,
+        h: 50
+    }
+    let asteroids=[]
+    let keys={}
+
+    let gameRunning=false
+    let startTime=0
+    const gameDuration=90000 // 1.5 minutes
+
+    document.addEventListener("keydown",(e)=>{
+        keys[e.key]=true
+    })
+
+    document.addEventListener("keyup",(e)=>{
+        keys[e.key]=false
+    })
+
+    function startDodgeGame(){
+        document.querySelector('.start-btn-2').style.display='none'
+        document.querySelector('.game-description-eng-2').style.display='none'
+        document.querySelector('.game-description-th-2').style.display='none'
+        document.querySelector('.game-2-space').classList.add('d-none')
+        document.querySelector('.nav-progress').classList.remove('d-none')
+        document.querySelector('#dodgeMessage').classList.remove('d-none')
+        document.querySelector('#spaceCanvas').classList.remove('d-none')
+        ship.x=280
+        ship.y=330
+        asteroids=[]
+        startTime=Date.now()
+        gameRunning=true
+        dodgeMsg.innerText="Avoid the asteroids! Use arrow keys to move. / หลบอุกกาบาตพวกนั้น! ใช้ปุ่มลูกศรในการเคลื่อนที่"
+        gameLoop()
+    }
+
+    function spawnAsteroid(){
+        asteroids.push({
+            x:Math.random()*560,
+            y:-40,
+            size:30+Math.random()*20,
+            speed:2+Math.random()*3
+        })
+    }
+
+    function update(){
+        if(keys["ArrowLeft"]) ship.x-=ship.speed
+        if(keys["ArrowRight"]) ship.x+=ship.speed
+        if(keys["ArrowUp"]) ship.y-=ship.speed
+        if(keys["ArrowDown"]) ship.y+=ship.speed
+        ship.x=Math.max(0,Math.min(canvas.width-ship.w,ship.x))
+        ship.y=Math.max(0,Math.min(canvas.height-ship.h,ship.y))
+        if(Math.random()<0.03) spawnAsteroid()
+        asteroids.forEach(a=>{
+            a.y+=a.speed
+        })
+        asteroids=asteroids.filter(a=>a.y<canvas.height+40)
+        checkCollision()
+        updateProgress()
+    }
+
+    function updateProgress(){
+        const elapsed=Date.now()-startTime
+        const percent=Math.min(elapsed/gameDuration*100,100)
+        progressFill.style.width=percent+"%"
+        if(elapsed>=gameDuration){
+            winGame()
+        }
+    }
+
+    function checkCollision(){
+        for(let a of asteroids){
+            if (
+                ship.x + hitbox.xOffset < a.x + a.size &&
+                ship.x + hitbox.xOffset + hitbox.w > a.x &&
+                ship.y + hitbox.yOffset < a.y + a.size &&
+                ship.y + hitbox.yOffset + hitbox.h > a.y
+            ) {
+                loseGame()
+            }
+        }
+    }
+
+    function draw(){
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+        ctx.drawImage(shipImg, ship.x, ship.y, ship.w, ship.h)
+        asteroids.forEach(a=>{
+            ctx.drawImage(
+                asteroidImg, 
+                a.x - a.size/2, 
+                a.y - a.size/2, 
+                a.size, 
+                a.size
+            )
+        })
+    }
+
+    function gameLoop(){
+        if(!gameRunning) return
+        update()
+        draw()
+        requestAnimationFrame(gameLoop)
+    }
+
+    function loseGame(){
+        gameRunning=false
+        dodgeMsg.innerText="💥 We were hit! We fell into Mars! Try again Commander Junie. / เราโดนยิง! เราตกลงไปในดาวอังคารแล้ว! ลองใหม่อีกครั้งนะ ผู้บัญชาการจูนี่"
+        setTimeout(() => {
+            document.querySelector('.start-btn-2').style.display='';
+            document.querySelector('.game-description-eng-2').style.display='flex';
+            document.querySelector('.game-description-th-2').style.display='flex';
+            document.querySelector('.game-2-space').classList.remove('d-none');
+            document.querySelector('.nav-progress').classList.add('d-none');
+            document.querySelector('#dodgeMessage').classList.add('d-none');
+            document.querySelector('#spaceCanvas').classList.add('d-none');
+        }, 3000);
+    }
+
+    function winGame(){
+        gameRunning=false
+        dodgeMsg.innerText="🌍 We reached Earth safely Commander Junie! / เราถึงโลกอย่างปลอดภัยแล้ว ผู้บัญชาการจูนี่!"
+        setTimeout(() => {
+            aircraftGameContainer.classList.remove('fade-in');
+            aircraftGameContainer.classList.add('fade-out');
+            setTimeout(() => {
+                aircraftGameContainer.classList.add('d-none');
+                conversationCharacter.classList.remove('d-none');
+                conversationCharacter.classList.remove('unshow');
+                conversationCharacter.classList.add('show');
+                nextConversation();
+            }, 1000);
+        }, 3000);
     }
 </script>
