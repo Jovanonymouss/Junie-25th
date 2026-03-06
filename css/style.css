@@ -128,7 +128,7 @@ body{
     .modal-footer {
         border-top: none;
         justify-content: center;}
-    .closeWelcomeModal, .closePrize1, .collectPrize1 {
+    .closeWelcomeModal, .closePrize1, .collectPrize1, .closePrize2, .collectPrize2, .closeMessageFromJovan {
         padding: 10px 20px;
         border: none;
         border-radius: 10px;
@@ -138,7 +138,7 @@ body{
         font-weight: bold;
         transition: background-color 0.3s ease;
         box-shadow: 5px 5px 8px #2abca1;}
-        .closeWelcomeModal:hover, .closePrize1:hover, .collectPrize1:hover {
+        .closeWelcomeModal:hover, .closePrize1:hover, .collectPrize1:hover, .closePrize2:hover, .collectPrize2:hover, .closeMessageFromJovan:hover {
             background-color: #0f650c;}
 
     /* Big Chapter Title */
@@ -370,22 +370,16 @@ body{
         border-radius:20px;
         text-align:center;
         color:white;
-        font-family:sans-serif;
-        }
-
-        .quiz-question{
+        font-family:sans-serif;}
+    .quiz-question{
         font-size:20px;
-        margin:20px 0;
-        }
-
-        .quiz-options{
+        margin:20px 0;}
+    .quiz-options{
         display:grid;
         grid-template-columns:repeat(2,1fr);
         gap:15px;
-        margin-top:20px;
-        }
-
-        .quiz-option{
+        margin-top:20px;}
+    .quiz-option{
         padding:15px;
         border:none;
         border-radius:12px;
@@ -393,13 +387,71 @@ body{
         color:white;
         cursor:pointer;
         transition:.3s;
-        font-size:16px;
-        }
-
-        .quiz-option:hover{
+        font-size:16px;}
+    .quiz-option:hover{
         transform:scale(1.05);
-        background:#222;
-        }
+        background:#222;}
+    .start-btn-3{
+        padding:10px 20px;
+        border:none;
+        border-radius:10px;
+        background:#ff69b4;
+        color:white;
+        cursor:pointer;
+        font-weight:bold;}
+    
+    /* Anonymous Message */
+    .voice-message-text {
+        font-family: monospace;
+        white-space: pre-line;
+        border-right: 3px solid;
+        padding-right: 5px;
+        width: fit-content;
+        animation: cursorBlink 1s infinite;}
+    @keyframes cursorBlink {
+        0% { border-color: transparent; }
+        50% { border-color: black; }
+        100% { border-color: transparent; }}
+    
+    /* Final Gift */
+    .box-scene{
+        position: relative;
+        height: 500px;
+        width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;}
+    .box-img{
+        height: 360px;
+        transition: opacity 1s ease;}
+    .flower-img{
+        position: absolute;
+        bottom: 85px;
+        height: 375px;
+        opacity: 0;
+        transform: translateY(80px) scale(0.7);}
+    .flower-show{
+        animation: flowerPop 1.5s ease forwards;}
+    @keyframes flowerPop{
+        0%{
+            opacity:0;
+            transform: translateY(80px) scale(0.7);}
+        60%{
+            opacity:1;
+            transform: translateY(-30px) scale(1.1);}
+        100%{
+            opacity:1;
+            transform: translateY(0) scale(1);}}
+
+/* box fade out */
+.box-hide{
+    animation: boxFade 1s ease forwards;
+}
+
+@keyframes boxFade{
+    from{opacity:1;}
+    to{opacity:0;}
+}
 
     /* Footer */
     footer {

@@ -76,10 +76,59 @@
                         <div class="prize-container d-flex flex-column align-items-center">
                             <img class="mt-3" style="height: 360px;" src="./assets/glowing_asteroid.png" alt="Glowing Asteroid">
                         </div>
-                        <button class="btn btn-primary mt-3 btn collectPrize2" onclick="collectPrize2()">Collect Artifact</button>
+                        <button class="btn btn-primary mt-3 btn collectPrize2" onclick="collectPrize2()">Collect Glowing Asteroid</button>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary primary-button closePrize2" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalMessageFromJovan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Message From ..J..O..V.A...N 📡</h1>
+                        <h5 class="modal-subtitle fs-6">ข้อความจาก ..โ..จ..ว.า...น 📡</h5>
+                    </div>
+                    <div class="d-flex w-100 justify-content-center">
+                        <audio id="voice-message" controls>
+                            <source src="./assets/message.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                    <div class="modal-body">
+                        <p class="m-0">Transcription zz...zz of the voice message...</p>
+                        <p class="m-0">การถอดข้อความเสียง zz...zz จากข้อความเสียง...</p>
+                        <div class="message-from-jovan-container d-flex flex-column align-items-center mt-3">
+                            <p class="m-0 mt-3 voice-message-text"> 
+                                Converting the voice message into text... <br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary primary-button closeMessageFromJovan" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalEnd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Final Gift For You! 🎁</h1>
+                        <h5 class="modal-subtitle fs-6">ของขวัญชิ้นสุดท้ายสำหรับคุณ! 🎁</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p class="m-0">Now you can open your package for the box that I send to you! Don't click the image before you open the real package you have and see what's inside of it!</p>
+                        <p class="m-0">ตอนนี้คุณเปิดกล่องพัสดุที่ผมส่งไปให้ได้แล้วนะ! แต่อย่าเพิ่งคลิกดูรูปภาพ จนกว่าคุณจะเปิดกล่องจริงๆ และดูว่ามีอะไรอยู่ข้างในนั้น!</p>
+                        <div class="prize-container-last d-flex flex-column align-items-center">
+                            <div class="box-scene">
+                                <img class="box-img" src="./assets/box.png" alt="Box">
+                                <img class="flower-img" src="./assets/flower.png" alt="Flower">
+                            </div>
+                        </div>
+                        <p class="meaning-of-flower">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -162,20 +211,20 @@
             </div>
             <div class="earth-quiz-container d-none">
                 <h2>🌍 Earth Integration Quiz</h2>
-                <p class="quiz-description-eng m-0">
+                <p class="quiz-description-eng-3 m-0">
                     Welcome Commander! In this quiz you will answer questions about Earth.
                     Each round contains one question with four choices. Choose the correct answer
-                    to continue your mission. Complete all 5 rounds to prove you understand Earth!
+                    to continue your mission. Complete all 10 rounds to prove you understand Earth!
                 </p>
                 <br>
-                <p class="quiz-description-th m-0">
+                <p class="quiz-description-th-3 m-0">
                     ยินดีต้อนรับครับผู้บัญชาการ! ในควิซนี้คุณจะต้องตอบคำถามเกี่ยวกับโลก โดยในแต่ละรอบจะมีหนึ่งคำถามพร้อมตัวเลือกสี่ข้อ 
-                    เลือกคำตอบที่ถูกต้องเพื่อดำเนินภารกิจต่อไป ตอบคำถามให้ครบทั้ง 5 รอบเพื่อพิสูจน์ว่าคุณเข้าใจเรื่องราวของโลกอย่างแท้จริง!
+                    เลือกคำตอบที่ถูกต้องเพื่อดำเนินภารกิจต่อไป ตอบคำถามให้ครบทั้ง 10 รอบเพื่อพิสูจน์ว่าคุณเข้าใจเรื่องราวของโลกอย่างแท้จริง!
                 </p>
                 <div id="quizMessage" class="game-message"></div>
                 <div class="quiz-question" id="quizQuestion"></div>
                 <div class="quiz-options" id="quizOptions"></div>
-                <button class="start-btn mt-3" onclick="startEarthQuiz()">Start Quiz 🌍</button>
+                <button class="start-btn-3 mt-3" onclick="startEarthQuiz()">Start Quiz 🌍</button>
             </div>
         </div>
         <footer class="text-center">
@@ -204,7 +253,9 @@
     // Game 2
     let aircraftGameContainer = document.querySelector('.space-dodge-container');
     // Game 3
-    let quizGameContainer = document.querySelector('.earth-quiz-container');
+    let earthQuizContainer = document.querySelector('.earth-quiz-container');
+    // Final Gift
+    let finalGiftContainer = new bootstrap.Modal(document.getElementById('modalEnd'));
 
     let buttonConversation = document.querySelector('.buttonConversation');
     let conversationCharacter = document.querySelector('.conversation-character');
@@ -243,14 +294,14 @@
     }
 
     // PRIZE 2
-    // function collectPrize2() {
-    //     // Make an action like copied to the clipboard;
-    //     navigator.clipboard.writeText("https://wogi.gifts/redeem/z2AS-jAHEA").then(function() {
-    //         alert("You have collected the Grab ! 🎫");
-    //     }, function(err) {
-    //         console.error('Uh oh! The Alien took the artifact back to his spaceship! 🛸', err);
-    //     });
-    // }
+    function collectPrize2() {
+        // Make an action like copied to the clipboard;
+        navigator.clipboard.writeText("https://wogi.gifts/redeem/P5Krv4zSPg").then(function() {
+            alert("You have collected the Grab ! 🎫");
+        }, function(err) {
+            console.error('Uh oh! The Alien took the artifact back to his spaceship! 🛸', err);
+        });
+    }
 
     document.querySelector('.closePrize1').addEventListener('click', function () {
         var modalPrize1 = new bootstrap.Modal(document.getElementById('modalPrize1'));
@@ -265,6 +316,35 @@
             conversationCharacter.classList.add('show');
             nextConversation();
         }, 1000);
+    });
+
+    document.querySelector('.closePrize2').addEventListener('click', function () {
+        var modalPrize2 = new bootstrap.Modal(document.getElementById('modalPrize2'));
+        modalPrize2.hide();
+
+        aircraftGameContainer.classList.remove('fade-in');
+        aircraftGameContainer.classList.add('fade-out');
+        setTimeout(() => {
+            aircraftGameContainer.classList.add('d-none');
+            conversationCharacter.classList.remove('d-none');
+            conversationCharacter.classList.remove('unshow');
+            conversationCharacter.classList.add('show');
+            nextConversation();
+        }, 1000);
+    });
+
+    document.querySelector('.closeMessageFromJovan').addEventListener('click', function () {
+        var voiceMessage = document.getElementById("voice-message");
+        voiceMessage.pause();
+
+        var modalMessage = new bootstrap.Modal(document.getElementById('modalMessageFromJovan'));
+        modalMessage.hide();
+
+        
+        setTimeout(() => {
+            nextConversation();
+            buttonConversation.style.display = "";
+        }, 2000);
     });
 
     document.querySelector('.closeWelcomeModal').addEventListener('click', function () {
@@ -310,7 +390,7 @@
     });
 
     // Conversation Logic Sequence
-    let conversationStep = 0; // Start from 0, increment every time nextConversation is called
+    let conversationStep = 51; // Start from 0, increment every time nextConversation is called
     function nextConversation(){
         if(conversationStep === 0){
             unfocusCommanderJunieContainer.classList.remove('show');
@@ -579,49 +659,49 @@
             unfocusCommanderJovanContainer.classList.remove('unshow');
             commanderJunieSubtitleEng.innerHTML = "I can't believe we made it, Commander Jovan! This is like a dream come true! 🌟";
             commanderJunieSubtitleTh.innerHTML = "ไม่อยากจะเชื่อเลยว่าเราทำสำเร็จ ผู้บัญชาการโจวาน! นี่มันเหมือนฝันที่เป็นจริงเลย! 🌟"
-        } else if (conversationStep === 29) {
+        }else if(conversationStep === 29) {
             unfocusCommanderJovanContainer.classList.remove('show');
             unfocusCommanderJovanContainer.classList.add('unshow');
             unfocusCommanderJunieContainer.classList.add('show');
             unfocusCommanderJunieContainer.classList.remove('unshow');
             commanderJovanSubtitleEng.innerHTML = "But wait, Commander Junie! We can't just walk out there yet. The Earth Defense System requires a security clearance.";
             commanderJovanSubtitleTh.innerHTML = "แต่เดี๋ยวก่อนครับ ผู้บัญชาการจูนี่! เรายังเดินออกไปเฉย ๆ ไม่ได้นะ ระบบป้องกันของโลกต้องการการยืนยันตัวตนก่อนครับ";
-        } else if (conversationStep === 30) {
+        }else if(conversationStep === 30) {
             unfocusCommanderJunieContainer.classList.remove('show');
             unfocusCommanderJunieContainer.classList.add('unshow');
             unfocusCommanderJovanContainer.classList.add('show');
             unfocusCommanderJovanContainer.classList.remove('unshow');
             commanderJunieSubtitleEng.innerHTML = "A security clearance? After all that flying? What do we need to do? 🤔";
             commanderJunieSubtitleTh.innerHTML = "ยืนยันตัวตนเหรอคะ? หลังจากที่บินมาตั้งไกลเนี่ยนะ? เราต้องทำยังไงบ้างคะ? 🤔";
-        } else if (conversationStep === 31) {
+        }else if(conversationStep === 31) {
             unfocusCommanderJovanContainer.classList.remove('show');
             unfocusCommanderJovanContainer.classList.add('unshow');
             unfocusCommanderJunieContainer.classList.add('show');
             unfocusCommanderJunieContainer.classList.remove('unshow');
-            commanderJovanSubtitleEng.innerHTML = "We must complete the 'Earth Integration Quiz'. It’s a test of knowledge about our new home and your journey.";
+            commanderJovanSubtitleEng.innerHTML = "We must complete the 'Earth Integration Quiz'. It'ds a test of knowledge about our new home and your journey.";
             commanderJovanSubtitleTh.innerHTML = "เราต้องทำ 'แบบทดสอบการรวมเข้ากับโลก' ครับ เป็นการทดสอบความรู้เกี่ยวกับบ้านใหม่และการเดินทางของคุณ";
-        } else if (conversationStep === 32) {
+        }else if(conversationStep === 32) {
             unfocusCommanderJunieContainer.classList.remove('show');
             unfocusCommanderJunieContainer.classList.add('unshow');
             unfocusCommanderJovanContainer.classList.add('show');
             unfocusCommanderJovanContainer.classList.remove('unshow');
             commanderJunieSubtitleEng.innerHTML = "Challenge accepted! I've studied the ancient files. I'm ready for any questions! 💪";
             commanderJunieSubtitleTh.innerHTML = "รับคำท้าค่ะ! หนูศึกษาไฟล์ข้อมูลโบราณมาแล้ว พร้อมสำหรับทุกคำถามเลยค่ะ! 💪";
-        } else if (conversationStep === 33) {
+        }else if(conversationStep === 33) {
             unfocusCommanderJovanContainer.classList.remove('show');
             unfocusCommanderJovanContainer.classList.add('unshow');
             unfocusCommanderJunieContainer.classList.add('show');
             unfocusCommanderJunieContainer.classList.remove('unshow');
             commanderJovanSubtitleEng.innerHTML = "Let's see if you're truly ready for age 25... I mean, for life on Earth! Answer correctly to unlock the gate.";
             commanderJovanSubtitleTh.innerHTML = "มาดูกันว่าคุณพร้อมสำหรับอายุ 25... หมายถึง พร้อมสำหรับชีวิตบนโลกจริงไหม! ตอบให้ถูกเพื่อเปิดประตูเมืองนะครับ";
-        } else if (conversationStep === 34) {
+        }else if(conversationStep === 34) {
             unfocusCommanderJunieContainer.classList.remove('show');
             unfocusCommanderJunieContainer.classList.add('unshow');
             unfocusCommanderJovanContainer.classList.add('show');
             unfocusCommanderJovanContainer.classList.remove('unshow');
-            commanderJunieSubtitleEng.innerHTML = "Initiating the Quiz Protocol now! Let’s do this! 📝";
+            commanderJunieSubtitleEng.innerHTML = "Initiating the Quiz Protocol now! Let's do this! 📝";
             commanderJunieSubtitleTh.innerHTML = "เริ่มเข้าสู่โหมดทำแบบทดสอบเดี๋ยวนี้เลย! มาเริ่มกันเลยค่ะ! 📝";
-        } else if (conversationStep === 35) {
+        }else if(conversationStep === 35) {
             // TRIGGER THE QUIZ GAME
             buttonConversation.disabled = true;
             unfocusCommanderJunieContainer.classList.remove('show');
@@ -631,11 +711,148 @@
             wholeContainer.classList.remove('focus');
             setTimeout(() => {
                 conversationCharacter.classList.add('d-none');
-                quizGameContainer.classList.remove('d-none');
-                quizGameContainer.classList.add('fade-in');
+                earthQuizContainer.classList.remove('d-none');
+                earthQuizContainer.classList.add('fade-in');
             }, 1000);
+        }else if(conversationStep === 36){
+            // Already win the quiz game, next conversation
+            commanderJunieSubtitleEng.innerHTML = "";
+            commanderJunieSubtitleTh.innerHTML = "";
+            commanderJovanSubtitleEng.innerHTML = "";
+            commanderJovanSubtitleTh.innerHTML = "";
+            conversationCharacter.classList.remove('unshow');
+            conversationCharacter.classList.add('show');
+            setTimeout(() => {
+                unfocusCommanderJunieContainer.classList.remove('unshow');
+                unfocusCommanderJunieContainer.classList.add('show');
+                wholeContainer.classList.add('focus');
+                commanderJovanSubtitleEng.innerHTML = "Congratulations, Commander Junie! You've passed the Earth Integration Quiz with flying colors! 🌟 ...";
+                commanderJovanSubtitleTh.innerHTML = "ยินดีด้วย ผู้บัญชาการจูนี่! คุณผ่านควิซความรู้เรื่องโลกได้อย่างยอดเยี่ยมเลย! 🌟 ...";
+            }, 2000);
+        }else if(conversationStep === 37){
+            commanderJovanSubtitleEng.innerHTML = "You are now officially a citizen of Earth! Welcome to your new home, Commander Junie! 🌍";
+            commanderJovanSubtitleTh.innerHTML = "ตอนนี้คุณเป็นพลเมืองของโลกอย่างเป็นทางการแล้ว! ยินดีต้อนรับสู่บ้านใหม่ของคุณนะครับ ผู้บัญชาการจูนี่! 🌍";
+        }else if(conversationStep === 38){
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "Thank you so much, Commander Jovan! I can't wait to explore Earth and start this new chapter of my life! 🌟";
+            commanderJunieSubtitleTh.innerHTML = "ขอบคุณมากนะ ผู้บัญชาการโจวาน! ฉันแทบจะรอสำรวจโลกและเริ่มต้นบทใหม่ของชีวิตไม่ไหวแล้ว! 🌟";
+        }else if(conversationStep === 39){
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            commanderJovanSubtitleEng.innerHTML = "The pleasure is all mine, Commander Junie! Let's make the most of our time on Earth and create unforgettable memories together! 🌍 ...";
+            commanderJovanSubtitleTh.innerHTML = "ด้วยความยินดีอย่างยิ่ง ผู้บัญชาการจูนี่! มาใช้เวลาบนโลกให้คุ้มค่าที่สุด และสร้างความทรงจำที่ไม่มีวันลืมไปด้วยกันนะ! 🌍 ...";
+        }else if(conversationStep === 40){
+            commanderJovanSubtitleEng.innerHTML = "Oh wait, what is this transmission signals? It said.. For Commander Junie!";
+            commanderJovanSubtitleTh.innerHTML = "เดี๋ยวก่อนนะ สัญญาณส่งข้อมูลนี่มันอะไรกัน? มันบอกว่า... ถึงผู้บัญชาการจูนี่!";
+        }else if(conversationStep === 41){
+            buttonConversation.style.display = 'none';
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "What? A message for me? Let's see what it says 🤔";
+            commanderJunieSubtitleTh.innerHTML = "อะไรนะ? มีข้อความส่งมาหาฉันเหรอ? งั้นลองดูสิว่ามันบอกอะไร 🤔";
+            setTimeout(() => {
+                var messageMysterious = new bootstrap.Modal(document.getElementById('modalMessageFromJovan'));
+                messageMysterious.show();
+                const text = `Happy Birthday to the most amazing girl in the world, my favorite Commander Junie! I hope your special day is filled with so much happiness, laughter, and all the things that make you smile. I am thinking about you every second today, and even though I can't be there to give you a huge hug right now, I am sending you all my love from across the stars. You make my life so much better just by being in it, and I feel so lucky to be your partner in this big adventure.
+                    I also have to give you my usual reminder: please try to save your money! I know it's hard when there are so many fun things to buy, but if you stop spending so much, we can save up faster and see each other much more often. I really miss you and I want us to be together and go on more trips soon, so let's make it happen!
+                    Since it's your birthday, I have a little extra surprise for you. Here is a special message in Thai to show you how much I care:
+                    สุขสันต์วันเกิดนะจ๊ะ จูนี่! ขอให้มีความสุขมากๆ และรวยๆ จะได้มาเจอกันบ่อยๆ รักนะ!
+                    Have the best day ever, enjoy every moment, and remember that I love you very much! Happy Birthday 25th My Junie. I love you!`;
+                const element = document.querySelector(".voice-message-text");
+                element.innerHTML = "";
+                let i = 0;
+                function typeWriter() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 40);
+                    }
+                }
+                setTimeout(typeWriter, 4000);
+            }, 2000);
+        }else if(conversationStep === 42){
+            commanderJunieSubtitleEng.innerHTML = "Wow, thank you so much, Commander Jovan! This is the sweetest birthday message ever! I love you too! 💖";
+            commanderJunieSubtitleTh.innerHTML = "ว้าว ขอบคุณมากเลยนะ ผู้บัญชาการโจวาน! นี่เป็นข้อความอวยพรวันเกิดที่หวานที่สุดเท่าที่เคยได้รับมาเลย! ฉันก็รักคุณเหมือนกันนะ! 💖";
+        }else if(conversationStep === 43){
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            commanderJovanSubtitleEng.innerHTML = "Hehe, I'm glad you liked it, Commander Junie! You deserve all the happiness in the world on your special day! 🎉 ...";
+            commanderJovanSubtitleTh.innerHTML = "ฮ่าฮ่า, ดีใจที่คุณชอบนะ ผู้บัญชาการจูนี่! คุณสมควรจะมีความสุขทั้งหมดในโลกในวันพิเศษของคุณ! 🎉 ...";
+        }else if(conversationStep === 44){
+            commanderJovanSubtitleEng.innerHTML = "Ah! Before I forgot, I have 1 more surprise for you! Do you want to see it now? 🎁";
+            commanderJovanSubtitleTh.innerHTML = "อ้อ! เกือบจะลืมไปเลย ก่อนที่เราจะไปต่อ ผมยังมีเซอร์ไพรส์อีกอย่างหนึ่งให้คุณด้วยนะ! อยากเห็นตอนนี้เลยไหม? 🎁";
+        }else if(conversationStep === 45){
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "Yes! I can't wait to see what it is! 🎁";
+            commanderJunieSubtitleTh.innerHTML = "ใช่ค่ะ! ฉันแทบจะรอไม่ไหวแล้วที่จะได้เห็นมัน! 🎁";
+        }else if(conversationStep === 46){
+            unfocusCommanderJovanContainer.classList.remove('show');
+            unfocusCommanderJovanContainer.classList.add('unshow');
+            unfocusCommanderJunieContainer.classList.add('show');
+            unfocusCommanderJunieContainer.classList.remove('unshow');
+            commanderJovanSubtitleEng.innerHTML = "Not that fast, haha! Before you open it, I wanna say thank you for being here ..."
+            commanderJovanSubtitleTh.innerHTML = "ไม่ต้องรีบขนาดนั้นก็ได้ ฮ่าฮ่า! ก่อนที่คุณจะเปิดมัน ผมอยากจะขอบคุณนะ... ขอบคุณที่อยู่ตรงนี้กับผม..."
+        }else if(conversationStep === 47){
+            commanderJovanSubtitleEng.innerHTML = "For being the most amazing partner and friend I could ever ask for ...";
+            commanderJovanSubtitleTh.innerHTML = "สำหรับการเป็นคู่หูและเพื่อนที่ยอดเยี่ยมที่สุดเท่าที่ผมจะขอได้ ...";
+        }else if(conversationStep === 48){
+            commanderJovanSubtitleEng.innerHTML = "You make my life so much better just by being in it ...";
+            commanderJovanSubtitleTh.innerHTML = "คุณทำให้ชีวิตของผมดีขึ้นมาก เพียงแค่มีคุณอยู่ในนั้น ...";
+        }else if(conversationStep === 49){
+            commanderJovanSubtitleEng.innerHTML = "And I feel so lucky to have you by my side on this crazy adventure through the galaxy ...";
+            commanderJovanSubtitleTh.innerHTML = "และผมรู้สึกโชคดีเหลือเกินที่มีคุณอยู่เคียงข้าง ในการผจญภัยที่แสนบ้าคลั่งผ่านกาแล็กซีนี้ ...";
+        }else if(conversationStep === 50){
+            commanderJovanSubtitleEng.innerHTML = "I hope this little surprise will bring a big smile to your face, just like you always do to me! 💖 ...";
+            commanderJovanSubtitleTh.innerHTML = "ผมหวังว่าเซอร์ไพรส์เล็กๆ นี้จะทำให้คุณยิ้มได้กว้างๆ เหมือนที่คุณทำให้ผมยิ้มได้เสมอเลยนะ! 💖 ...";
+        }else if(conversationStep === 51){
+            commanderJovanSubtitleEng.innerHTML = "I'll see you in the next chapter of our journey, Commander Junie! I love you so much! ❤️";
+            commanderJovanSubtitleTh.innerHTML = "แล้วเจอกันในบทต่อไปของการเดินทางของเรานะ ผู้บัญชาการจูนี่! ผมรักคุณมากที่สุดเลย! ❤️";
+        }else if(conversationStep === 52){
+            chapterTitleEng.innerHTML = "Chapter #4 / <span class='chapter-title-th'>บทที่ #4</span>";
+            chapterSubtitleEng.innerHTML = "The End (?) / <span class='chapter-subtitle-th'>อวสาน (?)</span>";
+            buttonConversation.style.display = 'none';
+            unfocusCommanderJunieContainer.classList.remove('show');
+            unfocusCommanderJunieContainer.classList.add('unshow');
+            unfocusCommanderJovanContainer.classList.add('show');
+            unfocusCommanderJovanContainer.classList.remove('unshow');
+            commanderJunieSubtitleEng.innerHTML = "Thank you again, Commander Jovan! I'll see you in the next chapter! I love you too! ❤️";
+            commanderJunieSubtitleTh.innerHTML = "ขอบคุณอีกครั้งนะ ผู้บัญชาการโจวาน! แล้วเจอกันในบทต่อไปของการเดินทางนะ! ฉันก็รักคุณเหมือนกัน! ❤️";
+            setTimeout(() => {
+                wholeContainer.classList.remove('focus');
+                conversationCharacter.classList.remove('show');
+                conversationCharacter.classList.add('unshow');
+                setTimeout(() => {
+                    conversationCharacter.classList.add('d-none');
+                }, 1000);
+            }, 5000);
+            setTimeout(() => {
+                bigChapterTitle.classList.remove('d-none');
+                bigChapterTitle.classList.remove('fade-out');
+                bigChapterTitle.classList.add('fade-in');
+            }, 7000);
+            setTimeout(() => {
+                bigChapterTitle.classList.remove('fade-in');
+                bigChapterTitle.classList.add('fade-out');
+                setTimeout(() => {
+                    bigChapterTitle.classList.add('d-none');
+                }, 1000);
+            }, 11000);
+            setTimeout(() => {
+                finalGiftContainer.show();
+            }, 13000);
         }
-
         conversationStep++;
     }
 
@@ -651,7 +868,7 @@
     ]
 
     let round = 1
-    let roundSizes = [1,1,1]
+    let roundSizes = [3,4,5]
 
     let correctOrder=[]
     let shuffled=[]
@@ -813,7 +1030,7 @@
             x:Math.random()*560,
             y:-40,
             size:30+Math.random()*20,
-            speed:2+Math.random()*3
+            speed:0.8+Math.random()*0.7
         })
     }
 
@@ -824,7 +1041,7 @@
         if(keys["ArrowDown"]) ship.y+=ship.speed
         ship.x=Math.max(0,Math.min(canvas.width-ship.w,ship.x))
         ship.y=Math.max(0,Math.min(canvas.height-ship.h,ship.y))
-        if(Math.random()<0.03) spawnAsteroid()
+        if(Math.random()<0.015) spawnAsteroid()
         asteroids.forEach(a=>{
             a.y+=a.speed
         })
@@ -894,34 +1111,62 @@
         gameRunning=false
         dodgeMsg.innerText="🌍 We reached Earth safely Commander Junie! / เราถึงโลกอย่างปลอดภัยแล้ว ผู้บัญชาการจูนี่!"
         setTimeout(() => {
-            aircraftGameContainer.classList.remove('fade-in');
-            aircraftGameContainer.classList.add('fade-out');
-            setTimeout(() => {
-                aircraftGameContainer.classList.add('d-none');
-                conversationCharacter.classList.remove('d-none');
-                conversationCharacter.classList.remove('unshow');
-                conversationCharacter.classList.add('show');
-                nextConversation();
-            }, 1000);
-        }, 3000);
+            var prize2Modal = new bootstrap.Modal(document.getElementById('modalPrize2'));
+            prize2Modal.show();
+        }, 2000);
     }
 
     // GAME #3
     const earthQuizQuestions = [
         {
-            question:"Which planet do humans live on?",
-            options:["Mars","Earth","Venus","Jupiter"],
-            answer:"Earth"
+            question:"What's the date of our relationship? / เราเริ่มคบกันวันที่เท่าไหร่นะ?",
+            options:["November 27th, 2023","November 28th, 2023","December 25th, 2023","March 7th, 2024"],
+            answer:"November 27th, 2023"
         },
         {
-            question:"What covers about 70% of Earth's surface?",
-            options:["Mountains","Water","Desert","Forest"],
-            answer:"Water"
+            question:"Where did we first meet? / เราเจอกันครั้งแรกที่ไหนนะ?",
+            options:["At Discord","At Valorant","At The First Day We Met","At The First Date We Had"],
+            answer:"At Valorant"
         },
         {
-            question:"Which layer protects Earth from harmful solar radiation?",
-            options:["Ozone Layer","Core","Mantle","Crust"],
-            answer:"Ozone Layer"
+            question:"Who confessed first? / ใครเป็นคนสารภาพรักก่อนนะ?",
+            options:["We both", "Jovan","Nobody, it just happened", "Junie"],
+            answer:"Junie"
+        },
+        {
+            question:"What kind of movies do Jovan like the most? / โจวานชอบดูหนังแนวไหนมากที่สุดนะ?",
+            options:["Romance","Horror","Action","Comedy"],
+            answer:"Action"
+        },
+        {
+            question:"What kind of movies do Junie least like? / หนังแนวไหนที่จูนี่ชอบน้อยที่สุดนะ?",
+            options:["Anime","Horror","Action","Comedy"],
+            answer:"Horror"
+        },
+        {
+            question:"What does Junie do when she miss Jovan? / จูนี่ทำยังไงนะ เวลาที่คิดถึงโจวาน?",
+            options:["Text Jovan","Call Jovan","Look at our photos","Eat Somtum"],
+            answer:"Text Jovan"
+        },
+        {
+            question:"If we go on a late night call, what usually happens? / ถ้าเราโทรคุยกันตอนดึก ปกติแล้วจะเกิดอะไรขึ้นนะ?",
+            options:["We talk for hours","We fall asleep","We laugh a lot","All of the above"],
+            answer:"All of the above"
+        },
+        {
+            question:"What are the nicknames might you call Jovan when Junie miss him, the most? / ชื่อเล่นที่จูนี่ชอบใช้เรียกโจวานที่สุดเวลาคิดถึงเขาคืออะไรนะ?",
+            options:["My Baby","My Cutie Pan Pan","Babyyyy","Ma Babe"],
+            answer:"My Cutie Pan Pan"
+        },
+        {
+            question:"When was Junie coming to Indonesia? / จูนี่จะมาอินโดนีเซียเมื่อไหร่นะ?",
+            options:["December 29th 2024", "December 31st 2024", "January 1st 2025", "December 31st 2025"],
+            answer:"December 31st 2024"
+        },
+        {
+            question:"When was Jovan coming to Thailand? / โจวานจะมาประเทศไทยเมื่อไหร่?",
+            options:["August 5th 2025", "October 5th 2025", "September 5th 2025", "November 5th 2025"],
+            answer:"September 5th 2025"
         }
     ]
 
@@ -933,9 +1178,9 @@
     const quizMsg = document.getElementById("quizMessage")
 
     function startEarthQuiz(){
-        document.querySelector('.start-btn').style.display = 'none'
-        document.querySelector('.quiz-description-eng').style.display = 'none'
-        document.querySelector('.quiz-description-th').style.display = 'none'
+        document.querySelector('.start-btn-3').style.display = 'none'
+        document.querySelector('.quiz-description-eng-3').style.display = 'none'
+        document.querySelector('.quiz-description-th-3').style.display = 'none'
         quizRound = 0
         loadQuizQuestion()
     }
@@ -982,15 +1227,98 @@
         }else{
             quizMsg.innerText="❌ Incorrect answer. Try again Commander Junie."
             setTimeout(()=>{
-                document.querySelector('.quizMessage').innerText=""
-                document.querySelector('.start-btn').style.display=''
-                document.querySelector('.quiz-description-eng').style.display='flex'
-                document.querySelector('.quiz-description-th').style.display='flex'
+                quizMsg.innerText=""
+                document.querySelector('.start-btn-3').style.display=''
+                document.querySelector('.quiz-description-eng-3').style.display='flex'
+                document.querySelector('.quiz-description-th-3').style.display='flex'
                 quizQuestion.innerHTML=""
                 quizOptions.innerHTML=""
                 quizRound=0
             },3000)
         }
     }
+
+    // Final Gift
+    const container = document.querySelector(".prize-container-last");
+    const box = document.querySelector(".box-img");
+    const flower = document.querySelector(".flower-img");
+
+    container.addEventListener("click", () => {
+        box.src = "./assets/box_open.png";
+        setTimeout(() => {
+            flower.classList.add("flower-show");
+        }, 2000);
+        setTimeout(() => {
+            box.classList.add("box-hide");
+        }, 3500);
+        setTimeout(() => {
+        const text = `
+            ❤️ Red (The Wrapping) / สีแดง (กระดาษห่อ)
+
+            Red is the color of deep love, passion, and commitment.
+            สีแดงคือสีแห่งความรักที่ลึกซึ้ง ความหลงใหล และความมุ่งมั่นทุ่มเท
+
+            It's bold and impossible to ignore—just like real feelings.
+            มันโดดเด่นและไม่อาจมองข้ามได้ เหมือนกับความรู้สึกจริงๆ ของคนเรา
+
+            The red wrapping represents how strong and serious my love is for you.
+            กระดาษห่อสีแดงเป็นตัวแทนว่าความรักที่ผมมีให้คุณนั้นแข็งแกร่งและจริงจังเพียงใด
+
+            It's not quiet or temporary—it's intense, protective, and always surrounding you.
+            มันไม่ใช่ความรักที่เงียบเหงาหรือชั่วคราว แต่มันคือความรักที่เข้มข้น คอยปกป้อง และจะโอบล้อมคุณไว้เสมอ
+
+            🤍 White (The Roses) / สีขาว (ดอกกุหลาบ)
+
+            White flowers symbolize purity, honesty, and sincere love.
+            ดอกไม้สีขาวสัญลักษณ์ของความบริสุทธิ์ ความซื่อสัตย์ และความรักที่จริงใจ
+
+            They represent a relationship built on trust and genuine care.
+            สิ่งนี้เป็นตัวแทนของความสัมพันธ์ที่สร้างขึ้นบนความไว้วางใจและการดูแลเอาใจใส่อย่างแท้จริง
+
+            The white roses stand for the pure and honest love I have for you.
+            ดอกกุหลาบสีขาวหมายถึงความรักที่บริสุทธิ์และจริงใจที่ผมมีให้คุณ
+
+            With you, everything feels real, simple, and meaningful.
+            เมื่อมีคุณ ทุกอย่างก็ให้ความรู้สึกที่จริงแท้ เรียบง่าย และมีความหมาย
+
+            🌿 Green (The Leaves) / สีเขียว (ใบไม้)
+
+            Green represents growth, life, harmony, and a future that continues to develop.
+            สีเขียวเป็นตัวแทนของการเติบโต ชีวิต ความกลมกลืน และอนาคตที่พัฒนาต่อไปไม่หยุดยั้ง
+
+            The green leaves symbolize the life we're growing together.
+            ใบสีเขียวเหล่านี้เป็นสัญลักษณ์ของชีวิตที่เรากำลังเติบโตไปด้วยกัน
+
+            Every moment with you adds something new to my happiness and my future.
+            ทุกช่วงเวลาที่มีคุณ ได้ช่วยเติมเต็มสิ่งใหม่ๆ ให้กับความสุขและอนาคตของผม
+
+            🧡 Gold/Orange (The Ribbon) / สีทอง/ส้ม (โบว์)
+
+            Gold or warm orange tones symbolize appreciation, warmth, and celebration.
+            โทนสีทองหรือสีส้มอุ่นๆ เป็นสัญลักษณ์ของการเห็นคุณค่า ความอบอุ่น และการเฉลิมฉลอง
+
+            The ribbon represents how special today is.
+            ริบบิ้นเป็นตัวแทนว่าวันนี้พิเศษเพียงใด
+
+            It ties everything together—just like you tie together so many beautiful parts of my life.
+            มันช่วยผูกทุกอย่างไว้ด้วยกัน เหมือนกับที่คุณผูกร้อยเรื่องราวสวยงามมากมายไว้ในชีวิตของผม
+        `;
+            const element = document.querySelector(".meaning-of-flower");
+            element.innerHTML = "";
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    if (text.charAt(i) === "\n") {
+                        element.innerHTML += "<br>";
+                    } else {
+                        element.innerHTML += text.charAt(i);
+                    }
+                    i++;
+                    setTimeout(typeWriter, 25);
+                }
+            }
+            typeWriter();
+        }, 4500);
+    });
 
 </script>
