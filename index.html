@@ -678,7 +678,7 @@
             unfocusCommanderJovanContainer.classList.add('unshow');
             unfocusCommanderJunieContainer.classList.add('show');
             unfocusCommanderJunieContainer.classList.remove('unshow');
-            commanderJovanSubtitleEng.innerHTML = "We must complete the 'Earth Integration Quiz'. It'ds a test of knowledge about our new home and your journey.";
+            commanderJovanSubtitleEng.innerHTML = "We must complete the 'Earth Integration Quiz'. It's a test of knowledge about our new home and your journey.";
             commanderJovanSubtitleTh.innerHTML = "เราต้องทำ 'แบบทดสอบการรวมเข้ากับโลก' ครับ เป็นการทดสอบความรู้เกี่ยวกับบ้านใหม่และการเดินทางของคุณ";
         }else if(conversationStep === 32) {
             unfocusCommanderJunieContainer.classList.remove('show');
@@ -723,8 +723,10 @@
             conversationCharacter.classList.remove('unshow');
             conversationCharacter.classList.add('show');
             setTimeout(() => {
-                unfocusCommanderJunieContainer.classList.remove('unshow');
+                unfocusCommanderJovanContainer.classList.remove('show');
+                unfocusCommanderJovanContainer.classList.add('unshow');
                 unfocusCommanderJunieContainer.classList.add('show');
+                unfocusCommanderJunieContainer.classList.remove('unshow');
                 wholeContainer.classList.add('focus');
                 commanderJovanSubtitleEng.innerHTML = "Congratulations, Commander Junie! You've passed the Earth Integration Quiz with flying colors! 🌟 ...";
                 commanderJovanSubtitleTh.innerHTML = "ยินดีด้วย ผู้บัญชาการจูนี่! คุณผ่านควิซความรู้เรื่องโลกได้อย่างยอดเยี่ยมเลย! 🌟 ...";
@@ -948,7 +950,7 @@
             }else{
                 msg.innerText="❌ Wrong order! Try again Commander Junie. / ลำดับไม่ถูกต้อง! ลองใหม่อีกครั้งนะ ผู้บัญชาการจูเน่"
                 setTimeout(() => {
-                    document.querySelector('.gameMessage').innerText = "";
+                    msg.innerText = '';
                     document.querySelector('.start-btn').style.display = '';
                     document.querySelector('.game-description-eng').style.display = 'flex';
                     document.querySelector('.game-description-th').style.display = 'flex';
