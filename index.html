@@ -1213,7 +1213,7 @@
                 quizRound++
                 setTimeout(loadQuizQuestion,2000)
             }else{
-                quizMsg.innerText="🌍 Excellent Commander Junie! Earth Integration Complete!"
+                quizMsg.innerText="🌍 Excellent Commander Junie! Earth Integration Complete! / ยอดเยี่ยมมาก ผู้บัญชาการจูนี่! การรวมเข้ากับโลกเสร็จสมบูรณ์แล้ว!"
                 setTimeout(()=>{
                     earthQuizContainer.classList.remove('fade-in')
                     earthQuizContainer.classList.add('fade-out')
@@ -1227,7 +1227,7 @@
                 },3000)
             }
         }else{
-            quizMsg.innerText="❌ Incorrect answer. Try again Commander Junie."
+            quizMsg.innerText="❌ Incorrect answer. Try again Commander Junie. / คำตอบไม่ถูกต้อง ลองใหม่อีกครั้งนะ ผู้บัญชาการจูนี่"
             setTimeout(()=>{
                 quizMsg.innerText=""
                 document.querySelector('.start-btn-3').style.display=''
